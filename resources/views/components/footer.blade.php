@@ -1,7 +1,6 @@
 <!-- Footer Component: Indus Resort Murree -->
 <footer class="indus-footer" id="contact">
-    <div class="outer-container">
-        <div class="container-1240">
+    <div class="inner-container">
             
             <!-- Footer Main Content Grid -->
             <div class="footer-main-grid">
@@ -80,6 +79,5 @@
                 <p class="tagline-text">Crafted with care for unforgettable mountain stays.</p>
             </div>
 
-        </div>
     </div>
 </footer>

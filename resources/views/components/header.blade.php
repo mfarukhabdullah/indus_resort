@@ -1,7 +1,6 @@
 <!-- Header Component: Indus Resort Murree -->
 <header class="indus-header" id="navbar">
-    <div class="outer-container">
-        <div class="container-1240 header-wrapper">
+    <div class="inner-container header-wrapper">
             
             <!-- Logo Section (Exact Dimension: 226.07px x 60px) -->
             <a href="{{ url('/') }}" class="header-logo-container">
@@ -53,6 +52,5 @@
                 </svg>
             </button>
 
-        </div>
     </div>
 </header>
