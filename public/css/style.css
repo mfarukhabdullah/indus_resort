@@ -1,0 +1,945 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-dark: #071311;
+    --bg-card: rgba(14, 31, 28, 0.75);
+    --bg-card-hover: rgba(22, 48, 43, 0.85);
+    --emerald-primary: #1c5237;
+    --emerald-dark: #133827;
+    --emerald-light: #246344;
+    --gold-primary: #c5a059;
+    --gold-bright: #dfb56c;
+    --gold-dark: #967637;
+    --text-light: #ffffff;
+    --text-muted: #a3b8b3;
+    --text-dim: #6c8580;
+    --border-gold: rgba(197, 160, 89, 0.25);
+    --font-serif: 'Libre Baskerville', serif;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Layout Container Requirements */
+    --container-outer-width: 1440px;
+    --container-inner-width: 1240px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* -------------------------------------------------------------
+   CONTAINER ARCHITECTURE (1440px Outer, 1240px Inner)
+------------------------------------------------------------- */
+.outer-container {
+    max-width: var(--container-outer-width);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.inner-content,
+.container-1240,
+.container-1350 {
+    max-width: var(--container-inner-width);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* -------------------------------------------------------------
+   HEADER COMPONENT STYLING (Exact Specs from Design)
+------------------------------------------------------------- */
+.indus-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    transition: var(--transition);
+}
+
+.indus-header.scrolled {
+    position: fixed;
+    background: rgba(5, 15, 13, 0.92);
+    backdrop-filter: blur(15px);
+    padding: 1rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid var(--border-gold);
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 1. Logo Section (Exact Dimension: 226.07px x 60px) */
+.header-logo-container {
+    width: 226.07px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo-badge-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logo-text-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-brand-title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.logo-location-subtitle {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold-bright);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    white-space: nowrap;
+}
+
+/* 2. Navigation Links Section (Exact Figma Typography & Positioning) */
+.header-nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 48px;
+}
+
+.header-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    list-style: none;
+}
+
+.header-nav-link {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22.5px;
+    letter-spacing: 0.39px;
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+    padding: 0.3rem 0;
+    transition: color 0.3s ease;
+}
+
+.header-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0%;
+    height: 2.5px;
+    background-color: var(--gold-primary);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.header-nav-link:hover {
+    color: var(--gold-bright);
+}
+
+.header-nav-link:hover::after,
+.header-nav-link.active::after {
+    width: 100%;
+}
+
+.header-nav-link.active {
+    color: var(--gold-bright);
+}
+
+/* 3. Book Now Button Section (Exact Dimension: 198px x 60px) */
+.header-book-btn {
+    width: 198px;
+    height: 60px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 9px;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: var(--transition);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.header-book-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+    background-color: #f8faf9;
+}
+
+.book-btn-icon-box {
+    width: 40px;
+    height: 52px;
+    background-color: var(--emerald-primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.header-book-btn:hover .book-btn-icon-box {
+    background-color: var(--emerald-dark);
+}
+
+.book-btn-text {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 22.5px;
+    letter-spacing: 1.2px;
+    color: var(--emerald-primary);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* Mobile Hamburger Toggle */
+.mobile-nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.mobile-nav-toggle span {
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: var(--transition);
+}
+
+/* -------------------------------------------------------------
+   HERO & PAGE STYLING
+------------------------------------------------------------- */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 9rem;
+    padding-bottom: 5rem;
+    background: linear-gradient(to bottom, rgba(5, 15, 13, 0.6), rgba(5, 15, 13, 0.92)), url('/images/hero.jpg') center/cover no-repeat;
+}
+
+.hero-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 900px;
+    z-index: 10;
+    margin-bottom: 3.5rem;
+}
+
+.hero-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.gold-gradient-text {
+    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
+    color: #050e0c;
+    border: none;
+    padding: 0.85rem 2rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-outline-gold {
+    background: transparent;
+    color: var(--gold-bright);
+    border: 1px solid var(--gold-primary);
+    padding: 0.85rem 2rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Booking Search Bar inside 1350px container */
+.booking-search-bar {
+    z-index: 10;
+    width: 100%;
+    background: var(--bg-card);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) auto;
+    gap: 1.25rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.search-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold-bright);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.search-input {
+    background: rgba(7, 19, 17, 0.7);
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    color: #ffffff;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+/* Section Shared Styling */
+.section {
+    padding: 6rem 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-tag {
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.section-divider {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+    margin: 0 auto;
+}
+
+/* Room Showcase Section */
+.room-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    color: var(--text-muted);
+    padding: 0.6rem 1.4rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn.active {
+    background: rgba(197, 160, 89, 0.18);
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+}
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 2.5rem;
+}
+
+.room-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.room-image-wrap {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+}
+
+.room-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.room-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(7, 19, 17, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-bright);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+}
+
+.room-details {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.room-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.room-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.room-specs {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spec-item {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+}
+
+.room-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.price-amount {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(3, 10, 9, 0.85);
+    backdrop-filter: blur(15px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container {
+    background: #0d2b26;
+    border: 1px solid var(--gold-bright);
+    border-radius: 14px;
+    max-width: 650px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.5rem;
+}
+
+.modal-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 0.4rem;
+}
+
+.form-control {
+    background: rgba(7, 19, 17, 0.8);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    color: #ffffff;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.booking-summary-box {
+    background: rgba(7, 19, 17, 0.9);
+    border: 1px dashed var(--gold-primary);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Toast */
+.toast-notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3000;
+    background: var(--emerald-primary);
+    border: 1px solid var(--gold-bright);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    color: var(--text-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Footer */
+/* -------------------------------------------------------------
+   FOOTER COMPONENT STYLING (Exact Figma Specs)
+------------------------------------------------------------- */
+.indus-footer {
+    background-color: #06140e;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2.5rem 0 2rem;
+    color: #ffffff;
+}
+
+.footer-main-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* 1. Brand Column (Exact Size: 401px x 218.5px) */
+.footer-col-brand {
+    width: 401px;
+    min-height: 218.5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-brand-desc {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    max-width: 380px;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 14px;
+
+    align-items: center;
+}
+
+.social-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #133827;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.social-icon-btn:hover {
+    background-color: #1f593e;
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+    transform: translateY(-3px);
+}
+
+/* 2. Quick Links Column (Exact Size: 127px x 221.95px) */
+.footer-col-quicklinks {
+    width: 127px;
+    min-height: 221.95px;
+    margin-left: 80px;
+}
+
+.footer-heading {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.3;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+}
+
+.footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav-list li {
+    margin-bottom: 12px;
+}
+
+.footer-nav-list a {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-nav-list a:hover {
+    color: var(--gold-bright);
+    padding-left: 4px;
+}
+
+/* 3. Contact Column (Exact Size: 302.81px x 173px) */
+.footer-col-contact {
+    width: 306.81px;
+    min-height: 173px;
+}
+
+.footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: var(--font-body);
+}
+
+.contact-item a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--gold-bright);
+}
+
+.contact-icon {
+    color: var(--gold-primary);
+    font-size: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-text,
+.tagline-text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #7f968d;
+}
+
+/* -------------------------------------------------------------
+   FIXED LAYOUT FOR HEADER AND FOOTER ON ALL SCREEN SIZES
+------------------------------------------------------------- */
+.indus-header {
+    min-width: 100%;
+}
+
+.header-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+}
+
+.header-logo-container {
+    width: 226.07px !important;
+    height: 60px !important;
+    flex-shrink: 0 !important;
+}
+
+.header-nav {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.header-nav-list {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 38px !important;
+}
+
+.header-book-btn {
+    width: 198px !important;
+    height: 60px !important;
+    flex-shrink: 0 !important;
+}
+
+.mobile-nav-toggle {
+    display: none !important;
+}
+
+.footer-main-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+}
+
+.footer-col-brand {
+    width: 401px !important;
+    flex-shrink: 0 !important;
+}
+
+.footer-col-quicklinks {
+    width: 127px !important;
+    flex-shrink: 0 !important;
+}
+
+.footer-col-contact {
+    width: 306.81px !important;
+    flex-shrink: 0 !important;
+}
+
+.footer-bottom-bar {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+/* Responsive Media Queries (Only for Hero & Section Cards if needed) */
+@media (max-width: 950px) {
+    .booking-search-bar {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .booking-search-bar {
+        grid-template-columns: 1fr;
+    }
+}
