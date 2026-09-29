@@ -855,91 +855,140 @@ body {
 }
 
 /* -------------------------------------------------------------
-   FIXED LAYOUT FOR HEADER AND FOOTER ON ALL SCREEN SIZES
+   MOBILE RESPONSIVE HEADER STYLING (Exact Specs from Figma)
 ------------------------------------------------------------- */
-.indus-header {
-    min-width: 100%;
-}
-
-.header-wrapper {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    flex-wrap: nowrap !important;
-}
-
-.header-logo-container {
-    width: 226.07px !important;
-    height: 60px !important;
-    flex-shrink: 0 !important;
-}
-
-.header-nav {
-    display: flex !important;
-    align-items: center !important;
-}
-
-.header-nav-list {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 38px !important;
-}
-
-.header-book-btn {
-    width: 198px !important;
-    height: 60px !important;
-    flex-shrink: 0 !important;
-}
-
-.mobile-nav-toggle {
-    display: none !important;
-}
-
-.footer-main-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: flex-start !important;
-    flex-wrap: nowrap !important;
-    width: 100% !important;
-}
-
-.footer-col-brand {
-    width: 401px !important;
-    flex-shrink: 0 !important;
-}
-
-.footer-col-quicklinks {
-    width: 127px !important;
-    flex-shrink: 0 !important;
-}
-
-.footer-col-contact {
-    width: 306.81px !important;
-    flex-shrink: 0 !important;
-}
-
-.footer-bottom-bar {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-}
-
-/* Responsive Media Queries (Only for Hero & Section Cards if needed) */
-@media (max-width: 950px) {
-    .booking-search-bar {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 600px) {
-    .hero-title {
-        font-size: 2.2rem;
+@media (max-width: 900px) {
+    .header-logo-container {
+        width: 188.39px !important;
+        height: 50px !important;
+        gap: 8px !important;
     }
 
-    .booking-search-bar {
-        grid-template-columns: 1fr;
+    .logo-badge-icon {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .logo-badge-icon svg {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .logo-brand-title {
+        font-size: 16.5px !important;
+    }
+
+    .logo-location-subtitle {
+        font-size: 9px !important;
+        letter-spacing: 3.5px !important;
+    }
+
+    .mobile-nav-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px !important;
+        height: 40px !important;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .header-nav {
+        display: none !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(5, 15, 13, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 2rem;
+        border-bottom: 1px solid var(--border-gold);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        margin: 0 !important;
+    }
+
+    .header-nav.mobile-active {
+        display: flex !important;
+    }
+
+    .header-nav-list {
+        flex-direction: column !important;
+        width: 100%;
+        gap: 1.5rem !important;
+        text-align: center;
+    }
+
+    .header-book-btn {
+        display: none !important;
+    }
+
+    /* Mobile Responsive Footer */
+    .indus-footer {
+        padding: 2.5rem 0 1.5rem !important;
+    }
+
+    .footer-main-grid {
+        flex-direction: column !important;
+        gap: 2.25rem !important;
+        align-items: flex-start !important;
+    }
+
+    .footer-col-brand,
+    .footer-col-quicklinks,
+    .footer-col-contact {
+        width: 100% !important;
+        min-height: auto !important;
+        margin-left: 0 !important;
+    }
+
+    .footer-brand-desc {
+        max-width: 100% !important;
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1.25rem !important;
+        color: #FFFFFF;
+    }
+
+    .footer-social-links {
+        display: flex !important;
+        gap: 12px !important;
+    }
+
+    .footer-heading {
+        font-size: 20px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .footer-nav-list li {
+        margin-bottom: 10px !important;
+    }
+
+    .footer-nav-list a {
+        font-size: 14.5px !important;
+    }
+
+    .contact-item {
+        margin-bottom: 14px !important;
+        gap: 12px !important;
+        font-size: 14px !important;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 0.4rem !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-top: 2rem !important;
+        padding-top: 1.25rem !important;
+    }
+
+    .copyright-text,
+    .tagline-text {
+        text-align: center !important;
+        font-size: 12.5px !important;
+        color: #FFFFFF
     }
 }
