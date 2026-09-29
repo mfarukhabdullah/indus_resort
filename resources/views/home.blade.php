@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
     
@@ -531,6 +533,7 @@
     }
 </style>
 
+@include('components.header')
 <div class="page-wrapper">
     <!-- Hero Section -->
     <section class="hero-section">
@@ -718,3 +721,5 @@
     <!-- Include CTA Component -->
     @include('cta')
 </div>
+
+@include('components.footer')
