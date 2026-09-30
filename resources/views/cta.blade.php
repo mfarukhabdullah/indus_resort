@@ -35,13 +35,13 @@
         width: 840px;
         max-width: 100%;
         height: 366px;
-        padding: 35px 50px;
+        padding: 45px 65px;
         border-radius: 16px;
-        text-align: center;
+        text-align: left;
         box-shadow: 0 15px 40px rgba(0,0,0,0.35);
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         box-sizing: border-box;
     }
@@ -49,9 +49,9 @@
         display: inline-block;
         background-color: #1F5F41;
         color: #ffffff;
-        font-family: 'Inter', sans-serif;
-        font-size: 11px;
-        font-weight: 600;
+        font-family: 'Libre Baskerville', 'Playfair Display', serif;
+        font-size: 12px;
+        font-weight: 500;
         padding: 6px 14px;
         border-radius: 4px;
         margin-bottom: 16px;
@@ -60,16 +60,40 @@
     }
     .cta-card h2 {
         font-family: 'Libre Baskerville', 'Playfair Display', serif;
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         font-weight: 600;
-        color: #1a2823;
-        margin-bottom: 12px;
-        line-height: 1.3;
+        color: #000000;
+        margin-bottom: 24px;
+        line-height: 1.2;
+    }
+    .cta-content-row {
+        display: flex;
+        align-items: stretch;
+        gap: 30px;
+        width: 100%;
+    }
+    .cta-lines {
+        width: 78px;
+        background: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 6px,
+            rgba(255, 255, 255, 0.4) 6px,
+            rgba(255, 255, 255, 0.4) 7px
+        );
+        flex-shrink: 0;
+    }
+    .cta-text-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        justify-content: space-between;
     }
     .cta-card p {
         font-family: 'Inter', sans-serif;
-        font-size: 14.5px;
-        color: #2b3a34;
+        font-size: 16px;
+        color: #000000;
         margin-bottom: 24px;
         line-height: 1.5;
         max-width: 520px;
@@ -80,10 +104,12 @@
         height: 60px;
         background-color: #ffffff;
         color: #133827;
-        font-family: 'Inter', sans-serif;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0.8px;
+        font-family: 'Libre Baskerville', 'Playfair Display', serif;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        line-height: 20px;
+        text-transform: uppercase;
         padding: 8px 16px 8px 8px;
         border-radius: 8px;
         text-decoration: none;
@@ -112,8 +138,9 @@
     .cta-book-btn span {
         flex: 1;
         text-align: center;
-        margin-right: 44px; /* Balances the left icon to center text perfectly */
-        color:#1F5F41;
+        margin-right: 44px;
+        color: #1F5F41;
+        font-family: 'Libre Baskerville', 'Playfair Display', serif;
     }
 
     /* Responsive Media Queries */
@@ -121,30 +148,54 @@
         .cta-section {
             height: auto;
             min-height: 380px;
-            padding: 40px 15px;
+            padding: 40px 0;
         }
         .cta-card {
             width: 100% !important;
             height: auto !important;
-            min-height: auto !important;
             padding: 30px 20px !important;
+            text-align: left;
+            align-items: flex-start;
         }
         .cta-card h2 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .cta-content-row {
+            flex-direction: column;
+            gap: 15px;
+        }
+        .cta-lines {
+            display: none;
         }
         .cta-card p {
-            font-size: 13.5px;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .cta-text-btn {
+            align-items: center; 
+            width: 100%;
         }
         .cta-book-btn {
-            width: 100% !important;
-            height: 54px !important;
-        }
-        .cta-book-btn span {
-            margin-right: 38px !important;
+            background-color: #1F5F41 !important;
+            position: relative !important;
+            padding: 0 !important;
+            justify-content: center !important;
+            width: 320px !important;
+            max-width: 100% !important;
+            height: 52px !important;
+            margin: 0 auto;
         }
         .cta-btn-icon {
-            width: 38px !important;
-            height: 38px !important;
+            position: absolute !important;
+            left: 20px !important;
+            background-color: transparent !important;
+            width: auto !important;
+            height: auto !important;
+        }
+        .cta-book-btn span {
+            color: #FFFFFF !important;
+            margin-right: 0 !important;
         }
     }
 </style>
@@ -154,15 +205,20 @@
         <div class="cta-card">
             <span class="cta-tag">YOUR COMFORT AWAITS</span>
             <h2>Ready for Your Mountain Escape?</h2>
-            <p>Reserve your room today and experience the beauty of Murree at Indus Resort.</p>
-            <a href="#bookingModal" class="cta-book-btn">
-                <div class="cta-btn-icon">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+            <div class="cta-content-row">
+                <div class="cta-lines"></div>
+                <div class="cta-text-btn">
+                    <p>Reserve your room today and experience the beauty of Murree at Indus Resort.</p>
+                    <a href="#bookingModal" class="cta-book-btn">
+                        <div class="cta-btn-icon">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span>BOOK YOUR STAY NOW</span>
+                    </a>
                 </div>
-                <span>BOOK YOUR STAY NOW</span>
-            </a>
+            </div>
         </div>
     </div>
 </section>

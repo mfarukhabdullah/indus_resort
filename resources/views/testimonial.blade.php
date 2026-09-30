@@ -61,7 +61,7 @@
     }
     .testimonial-card p {
         color: rgba(255, 255, 255, 0.9);
-        font-size: 0.95rem;
+        font-size: 1rem;
         line-height: 1.6;
         margin-bottom: 25px;
     }
@@ -69,6 +69,8 @@
         display: flex;
         align-items: center;
         gap: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
     }
     .guest-avatar {
         width: 44px;
@@ -99,6 +101,14 @@
         }
         .testimonial-header h2 {
             font-size: 2rem;
+        }
+        .testimonial-header p {
+            max-width: 320px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .testimonial-card:not(:first-child) {
+            display: none;
         }
     }
 </style>

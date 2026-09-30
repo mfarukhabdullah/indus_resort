@@ -175,39 +175,40 @@
     .hero-card {
         background: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(34px);
-        width: 500px;
-        height: 176px;
+        width: 470px;
+        height: 180px;
         border-radius: 20px;
         padding: 16px;
         display: flex;
         align-items: center;
         gap: 16px;
-        margin-top: 220px; /* Pushed further down as requested */
+        margin-top: 215px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         max-width: 100%;
         color: #fff;
+        flex-shrink: 0;
     }
     .hero-card img {
-        width: 172px;
-        height: 153px;
+        width: 148px;
+        height: 148px;
         object-fit: cover;
-        border-radius: 16px;
+        border-radius: 12px;
     }
     .hero-card h3 {
         font-family: 'Libre Baskerville', serif;
         font-weight: 400;
-        font-size: 20px; /* Scaled down slightly to fit on one line with smaller card */
+        font-size: 20px;
         line-height: 1.4;
         letter-spacing: 0px;
         color: #FFFFFF;
-        white-space: nowrap; /* Ensures heading stays on one line */
-        margin-bottom: 5px;
+        white-space: nowrap;
+        margin-bottom: 6px;
     }
     .hero-card p {
         font-family: 'Inter', sans-serif;
         font-weight: 400;
-        font-size: 14px; /* Scaled down slightly */
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 22px;
         letter-spacing: 0px;
         color: #FFFFFF;
         max-width: 250px;
@@ -574,17 +575,21 @@
             flex-direction: column;
             width: 100%;
             gap: 15px;
+            align-items: center;
+        }
+        .hero-btn-primary, .hero-btn-outline {
+            width: 350px;
+            max-width: 90%;
+            justify-content: center;
         }
         .hero-btn-primary {
-            width: 100%;
-            justify-content: center;
             background-color: #1F5F41;
             position: relative;
             padding: 0;
         }
         .hero-btn-primary .icon-box {
             position: absolute;
-            left: 25px;
+            left: 20px;
             background-color: transparent;
             width: auto;
             height: auto;
@@ -594,8 +599,6 @@
             color: #FFFFFF;
         }
         .hero-btn-outline {
-            width: 100%;
-            justify-content: center;
             background-color: #FFFFFF;
             color: #1F5F41;
         }
@@ -606,15 +609,7 @@
         .hero-text p {
             margin: 0 auto 30px auto;
         }
-        .hero-buttons {
-            flex-direction: column;
-            width: 100%;
-            gap: 15px;
-        }
-        .hero-btn-primary, .hero-btn-outline {
-            width: 100%;
-            justify-content: center;
-        }
+
         .hero-card {
             display: none; /* Hide the hero card on mobile */
         }
@@ -622,13 +617,16 @@
             grid-template-columns: 1fr;
             gap: 20px;
         }
+        .about-text p {
+            text-align: justify;
+        }
         .about-section h2, .rooms-header h2 {
             font-size: 28px;
             line-height: 38px;
             margin-bottom: 30px;
         }
         .about-img-left {
-            height: 220px;
+            height: 350px;
             width: 100%;
             object-position: center;
         }
@@ -637,8 +635,11 @@
         }
         .stats {
             flex-direction: row;
-            justify-content: flex-start;
-            gap: 15px; /* Reduced gap to fit nicely on narrow screens */
+            justify-content: center;
+            gap: 20px;
+            border-top: none;
+            width: 100%;
+            padding: 15px 0 0 0;
         }
         .rooms-grid {
             grid-template-columns: 1fr;
@@ -646,7 +647,33 @@
         }
         .room-card {
             margin: 0 auto;
-            max-width: 100%; /* Let it fill the mobile screen naturally */
+            max-width: 100%;
+            height: auto;
+            padding-bottom: 10px;
+        }
+        .room-img {
+            height: 260px;
+        }
+        .room-btn-primary {
+            background-color: #1F5F41;
+            position: relative;
+            padding: 0;
+            justify-content: center;
+            width: 320px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .room-btn-primary .icon-box {
+            position: absolute;
+            left: 20px;
+            background-color: transparent;
+            width: auto;
+            height: auto;
+        }
+        .room-btn-primary span {
+            color: #FFFFFF;
+            margin-left: 0;
+            padding-right: 0;
         }
     }
 </style>
