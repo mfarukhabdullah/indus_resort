@@ -78,7 +78,7 @@
     .hero-section {
         position: relative;
         height: 720px;
-        background-image: url('/images/hero-image.png');
+        background-image: url('{{ asset($homeSettings['hero_image']) }}');
         background-size: cover;
         background-position: center;
         display: flex;
@@ -114,7 +114,10 @@
         font-size: 64px;
         line-height: 84.38px;
         letter-spacing: 0px;
-        white-space: nowrap; /* Forces text to stay on one line */
+        white-space: nowrap;
+        height: 84.38px;
+        overflow: hidden;
+        text-overflow: ellipsis;
         color: #fff;
         margin-bottom: 20px;
     }
@@ -126,6 +129,8 @@
         letter-spacing: 0px;
         color: #FFFFFF;
         max-width: 701px;
+        height: 60px;
+        overflow: hidden;
         margin-bottom: 30px;
     }
     .hero-buttons {
@@ -191,7 +196,8 @@
         gap: 16px;
         margin-top: 215px;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        max-width: 100%;
+        min-width: 470px;
+        max-width: 470px;
         color: #fff;
         flex-shrink: 0;
     }
@@ -697,8 +703,8 @@
         <div class="inner-container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Indus Resort <span class="text-gold">Murree</span></h1>
-                    <p>A luxury mountain retreat where pine-scented air, misty valleys and warm hospitality come together for an unforgettable stay.</p>
+                    <h1>{{ $homeSettings['heading'] }}@if($homeSettings['highlight']) <span class="text-gold">{{ $homeSettings['highlight'] }}</span>@endif</h1>
+                    <p>{{ $homeSettings['description'] }}</p>
                     <div class="hero-buttons">
                         <a href="#" class="hero-btn-primary">
                             <div class="icon-box">

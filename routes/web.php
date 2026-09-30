@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [HomeSettingsController::class, 'home'])->name('home');
 
 Route::get('/about', function () {
     return view('about');
@@ -28,3 +27,10 @@ Route::get('/header', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::get('/admin/login', function () {
+    return view('admin.dashboard');
+})->name('admin.login');
+
+Route::get('/admin/home-settings', [HomeSettingsController::class, 'edit'])->name('admin.home-settings');
+Route::post('/admin/home-settings', [HomeSettingsController::class, 'update'])->name('admin.home-settings.update');
