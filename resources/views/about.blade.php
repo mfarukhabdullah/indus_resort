@@ -1,8 +1,21 @@
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Indus Resort Murree</title>
+    <meta name="description" content="Discover the story, values, and mountain sanctuary experience of Indus Resort in Murree.">
+    
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
     
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
     body {
         background-color: #fcfbf9;
         margin: 0;
@@ -17,19 +30,20 @@
     /* Typography */
     h1, h2, h3 {
         font-family: 'Libre Baskerville', serif;
-        color: #1c2826;
+        color: #000;
     }
     p {
-        color: #555;
+        color: #000;
         line-height: 1.6;
     }
     
     /* Inner Container */
     .inner-container {
         width: 100%;
-        max-width: 1350px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
+        box-sizing: border-box;
     }
 
     /* About Hero Section */
@@ -41,13 +55,12 @@
         background-position: center;
         display: flex;
         align-items: center;
+        justify-content: center;
         padding-top: 80px; /* Offset for header */
+        width: 100%;
     }
     .about-hero::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%);
+        display: none;
     }
     .about-hero-content {
         position: relative;
@@ -61,14 +74,15 @@
         font-family: 'Libre Baskerville', serif;
     }
     .about-hero-content p {
-        color: #ddd;
+        color: #FFFF;
         font-size: 18px;
     }
 
     /* Section 1: Story */
     .about-story {
-        padding: 20px 0;
+        padding: 60px 0;
         background-color: #fff;
+        width: 100%;
     }
     .story-grid {
         display: grid;
@@ -98,9 +112,10 @@
         font-size: 36px;
         margin-bottom: 8px;
         line-height: 1.3;
+        color:#000;
     }
     .story-text p {
-        margin-bottom: 6px;
+        margin-bottom: 12px;
         font-size: 16px;
         color: #000;
         text-align: justify;
@@ -137,17 +152,18 @@
 
     /* Section 2: What Makes Us Different */
     .about-different {
-        padding: 40px 0 80px 0;
+        padding: 30px 0 50px 0;
         background-color: #FAF6EC;
         text-align: center;
+        width: 100%;
     }
     .about-different h2 {
         font-size: 36px;
-        margin-bottom: 15px;
+        margin-bottom: 0px;
     }
     .about-different > .inner-container > p {
-        margin-bottom: 30px;
-        color: #666;
+        margin-bottom: 16px;
+        color: #000;
     }
     .features-grid {
         display: grid;
@@ -157,14 +173,14 @@
     .feature-card {
         background: #fff;
         padding: 35px 25px;
-        border-radius: 12px;
+        border-radius: 25px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         border: 1px solid #f0f0f0;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        height: 328px;
+        min-height: 300px;
     }
     .feature-icon {
         width: 63px;
@@ -202,15 +218,18 @@
         height: 300px;
         display: flex;
         align-items: center;
+        justify-content: center;
         color: #fff;
         margin-top: 50px;
         margin-bottom: 50px;
+        width: 100%;
     }
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
         text-align: center;
+        width: 100%;
     }
     .stat-box h3 {
         color: #E8C06D;
@@ -228,17 +247,24 @@
 
     /* Section 4: Reasons */
     .about-reasons {
-        padding: 80px 0;
+        padding: 0px 0;
         background-color: #fff;
+        width: 100%;
+        margin-bottom:50px;
     }
     .reasons-top {
         display: grid;
-        grid-template-columns: 4fr 5fr;
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        align-items: stretch;
     }
     .reasons-text {
-        padding-right: 40px;
+        grid-column: span 2;
+        padding-right: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     .reasons-text h2 {
         font-family: 'Libre Baskerville', serif;
@@ -248,86 +274,213 @@
         color: #1c2826;
     }
     .reasons-text p {
-        color: #666;
+        color: #000;
         line-height: 1.6;
         font-size: 15px;
     }
     .reasons-cards-top {
+        grid-column: span 2;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
     .reasons-cards-bottom {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        gap: 10px;
     }
     .reason-box {
         background: #FAF6EC;
-        padding: 40px 20px;
-        border-radius: 8px;
+        padding: 35px 20px;
+        border-radius: 16px;
         text-align: center;
         transition: transform 0.3s;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        height: 100%;
+        min-height: 170px;
     }
     .reason-box:hover {
         transform: translateY(-5px);
     }
     .reason-icon {
-        font-size: 40px;
-        color: #1c2826;
         margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+    }
+    .reason-icon img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
     }
     .reason-box h4 {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: 'Libre Baskerville', serif;
         font-size: 16px;
+        font-weight: 700;
         color: #1c2826;
         margin: 0;
     }
 
+    /* Responsive Mobile Media Queries */
     @media (max-width: 992px) {
-        .story-grid, .reasons-grid {
+        .story-grid, .reasons-top {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 35px;
+        }
+        .reasons-text, .reasons-cards-top {
+            grid-column: span 1;
         }
         .features-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
         .stats-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            gap: 30px;
         }
     }
     @media (max-width: 768px) {
-        .reasons-cards {
-            grid-template-columns: repeat(2, 1fr);
+        .about-hero {
+            height: auto;
+            min-height: 380px;
+            padding-top: 110px;
+            padding-bottom: 45px;
+            text-align: center;
         }
         .about-hero-content h1 {
-            font-size: 36px;
+            font-size: 32px;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+        .about-hero-content p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .about-hero-content p br {
+            display: none;
+        }
+        .about-story {
+            padding: 40px 0;
+        }
+        .story-text h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .story-text p {
+            font-size: 18px;
+            text-align: justify;
+            color:#000;
+        }
+        .btn-explore {
+            display: none;
+        }
+        .about-different {
+            padding: 40px 0;
+        }
+        .about-different h2 {
+            font-size: 26px;
+        }
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .feature-card {
+            padding: 30px 20px;
+            min-height: auto;
+        }
+        .about-stats {
+            height: auto;
+            min-height: 220px;
+            padding: 40px 0;
+            margin-top: 35px;
+            margin-bottom: 35px;
+        }
+        .stat-box h3 {
+            font-size: 34px;
+        }
+        .stat-box p {
+            font-size: 13px;
+        }
+        .reasons-top {
+            margin-bottom: 15px;
+            gap: 25px;
+        }
+        .reasons-text {
+            padding-right: 0;
+            text-align: center;
+        }
+        .reasons-text h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .reasons-text h2 br {
+            display: inline;
+        }
+        .reasons-text p {
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .reasons-cards-top, .reasons-cards-bottom {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .reason-box {
+            background: #FAF6EC;
+            padding: 30px 12px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .reason-box h4 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #1c2826;
+            margin: 0;
         }
     }
-    @media (max-width: 480px) {
-        .features-grid, .stats-grid, .reasons-cards {
-            grid-template-columns: 1fr;
+    @media (max-width: 576px) {
+        .about-hero-content h1 {
+            font-size: 26px;
+        }
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .reason-box {
+            padding: 24px 10px;
+            border-radius: 12px;
+        }
+        .reason-box h4 {
+            font-size: 14px;
+        }
+        .story-img-main {
+            height: 300px;
+        }
+        .story-img-sub {
+            height: 144px;
         }
     }
 </style>
+</head>
+<body>
 
 @include('components.header')
 
 <div class="page-wrapper">
     <!-- Hero -->
-    <section class="about-hero">
-        <div class="inner-container">
-            <div class="about-hero-content">
-                <h1>The Story of Indus Resort</h1>
-                <p>Retreat. Rediscover and unfold the lush beauty and comfort of our bounds.</p>
-            </div>
-        </div>
-    </section>
+    @include('components.hero', [
+        'title' => 'The Story of Indus Resort',
+        'subtitle' => 'Discover the passion and people behind Murree\'s most cherished mountain <br> retreat',
+        'image' => 'images/about-hero.png'
+    ])
 
     <!-- Story Section -->
     <section class="about-story">
@@ -339,7 +492,7 @@
                     <img src="{{ asset('images/peace-full-short-second.png') }}" class="story-img-sub" alt="Resort Room">
                 </div>
                 <div class="story-text">
-                    <h2>Your Peaceful Escape in the Hills of Murree</h2>
+                    <h2>A Home Away From Home in the Hills</h2>
                     <p>Indus Resort was founded with a simple vision — to give travelers a peaceful, comfortable place to reconnect with nature without compromising on comfort. Located along the scenic hills of Murree, our resort combines traditional hospitality with modern amenities to create an experience guests remember long after they leave.</p>
                     <p>Today, we welcome families, couples and groups from across Pakistan and abroad, offering cozy rooms, delicious food, and unforgettable evenings around the bonfire — all set against the breathtaking backdrop of the Himalayan foothills.</p>
                     <a href="#" class="btn-explore">
@@ -423,11 +576,15 @@
                 </div>
                 <div class="reasons-cards-top">
                     <div class="reason-box">
-                        <div class="reason-icon"><i class="ri-customer-service-2-line"></i></div>
+                        <div class="reason-icon">
+                            <img src="{{ asset('images/room-service-icon.svg') }}" alt="Room Service">
+                        </div>
                         <h4>Room Service</h4>
                     </div>
                     <div class="reason-box">
-                        <div class="reason-icon"><i class="ri-wifi-line"></i></div>
+                        <div class="reason-icon">
+                            <img src="{{ asset('images/wifi-icon.svg') }}" alt="Free Wi-Fi">
+                        </div>
                         <h4>Free Wi-Fi</h4>
                     </div>
                 </div>
@@ -435,19 +592,27 @@
             
             <div class="reasons-cards-bottom">
                 <div class="reason-box">
-                    <div class="reason-icon"><i class="ri-restaurant-line"></i></div>
+                    <div class="reason-icon">
+                        <img src="{{ asset('images/fresh-food-icon.svg') }}" alt="Fresh Food">
+                    </div>
                     <h4>Fresh Food</h4>
                 </div>
                 <div class="reason-box">
-                    <div class="reason-icon"><i class="ri-car-line"></i></div>
+                    <div class="reason-icon">
+                        <img src="{{ asset('images/free-parking-icon.svg') }}" alt="Free Parking">
+                    </div>
                     <h4>Free Parking</h4>
                 </div>
                 <div class="reason-box">
-                    <div class="reason-icon"><i class="ri-landscape-line"></i></div>
+                    <div class="reason-icon">
+                        <img src="{{ asset('images/mountain-view-icon.svg') }}" alt="Mountain View">
+                    </div>
                     <h4>Mountain View</h4>
                 </div>
                 <div class="reason-box">
-                    <div class="reason-icon"><i class="ri-hotel-line"></i></div>
+                    <div class="reason-icon">
+                        <img src="{{ asset('images/front-desk-icon.svg') }}" alt="24/7 Front Desk">
+                    </div>
                     <h4>24/7 Front Desk</h4>
                 </div>
             </div>
@@ -497,3 +662,5 @@
         });
     });
 </script>
+</body>
+</html>

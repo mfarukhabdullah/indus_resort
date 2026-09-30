@@ -21,7 +21,7 @@
 
     /* Layout Container Requirements */
     --container-outer-width: 1440px;
-    --container-inner-width: 1240px;
+    --container-inner-width: 1200px;
 }
 
 * {
@@ -41,7 +41,7 @@ body {
 }
 
 /* -------------------------------------------------------------
-   CONTAINER ARCHITECTURE (1440px Outer, 1240px Inner)
+   CONTAINER ARCHITECTURE (1440px Outer, 1200px Inner)
 ------------------------------------------------------------- */
 .outer-container {
     max-width: var(--container-outer-width);
@@ -53,13 +53,17 @@ body {
     padding-right: 1.5rem;
 }
 
+.inner-container,
 .inner-content,
 .container-1240,
 .container-1350 {
-    max-width: var(--container-inner-width);
+    max-width: 1200px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
 }
 
 /* -------------------------------------------------------------
@@ -95,13 +99,21 @@ body {
 
 /* 1. Logo Section (Exact Dimension: 226.07px x 60px) */
 .header-logo-container {
-    width: 226.07px;
+    width: auto;
+    max-width: 226.07px;
     height: 60px;
     display: flex;
     align-items: center;
     gap: 12px;
     text-decoration: none;
     flex-shrink: 0;
+}
+
+.header-logo-img {
+    height: 100%;
+    max-height: 60px;
+    width: auto;
+    object-fit: contain;
 }
 
 .logo-badge-icon {
@@ -945,7 +957,7 @@ body {
 
     .footer-brand-desc {
         max-width: 100% !important;
-        font-size: 16px !important;
+        font-size: 17px !important;
         line-height: 1.6 !important;
         margin-bottom: 1.25rem !important;
         color: #FFFFFF;

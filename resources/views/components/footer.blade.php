@@ -5,21 +5,13 @@
             <!-- Footer Main Content Grid -->
             <div class="footer-main-grid">
                 
-                <!-- Column 1: Brand & Socials (Exact Size: 401px x 218.5px) -->
+                <!-- Column 1: Brand & Socials -->
                 <div class="footer-col-brand">
                     <a href="{{ url('/') }}" class="header-logo-container" style="margin-bottom: 1.25rem;">
-                        <div class="logo-badge-icon">
-                            <svg width="60" height="60" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="24" cy="24" r="23" fill="#133827" stroke="#c5a059" stroke-width="1.5"/>
-                                <circle cx="33" cy="15" r="2.5" fill="#e5bd6a"/>
-                                <path d="M10 33L19 20L25 28L32 17L39 33H10Z" fill="#1d543b"/>
-                                <path d="M15 33L22 23L27 30L34 19L39 33H15Z" stroke="#dfb56c" stroke-width="1.2" fill="none"/>
-                                <path d="M12 35C16 33 20 37 25 35C30 33 34 36 38 35" stroke="#90c2a5" stroke-width="1" stroke-linecap="round"/>
-                            </svg>
-                        </div>
+                        <img src="{{ asset('images/web-logo.svg') }}" alt="Indus Resort Murree" class="header-logo-img">
                         <div class="logo-text-group">
-                            <span class="logo-brand-title">Indus Resort</span>
-                            <span class="logo-location-subtitle">M U R R E E</span>
+                            <span class="logo-brand-title">INDUS RESORT</span>
+                            <span class="logo-location-subtitle">MURREE</span>
                         </div>
                     </a>
 
@@ -44,11 +36,11 @@
                 <div class="footer-col-quicklinks">
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul class="footer-nav-list">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#rooms">Rooms & Suites</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('/about') }}">About</a></li>
+                        <li><a href="{{ url('/#rooms') }}">Rooms & Suites</a></li>
+                        <li><a href="{{ url('/#gallery') }}">Gallery</a></li>
+                        <li><a href="{{ url('/#contact') }}">Contact Us</a></li>
                     </ul>
                 </div>
 
