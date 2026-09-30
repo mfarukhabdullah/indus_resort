@@ -24,3 +24,7 @@ Route::get('/about', function () {
 Route::get('/header', function () {
     return view('header-preview');
 });
+
+Route::get('/contact', function () {
+    return view('contact');
+});
