@@ -150,7 +150,7 @@
     .hero-btn-primary span {
         font-family: 'Libre Baskerville', serif;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 18px;
         color: #1F5F41;
     }
     .hero-btn-outline {
@@ -166,7 +166,7 @@
         text-decoration: none;
         font-family: 'Libre Baskerville', serif;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 18px;
         transition: all 0.3s ease;
     }
     .hero-btn-outline:hover {
@@ -216,7 +216,7 @@
 
     /* About Section */
     .about-section {
-        padding: 80px 0;
+        padding: 45px 0;
         text-align: center;
         background-color: #fff;
     }
@@ -355,8 +355,9 @@
 
     /* Rooms Section */
     .rooms-section {
-        padding: 80px 0;
+        padding: 45px 0;
         background-color: #FAF6EC;
+        margin-bottom: 45px;
     }
     .rooms-header {
         text-align: center;
@@ -382,14 +383,14 @@
     .rooms-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
+        gap: 15px; /* Reduced from 30px to make them closer */
     }
     .room-card {
         background: #FFFFFF;
         border-radius: 16px;
         overflow: hidden;
         width: 100%;
-        max-width: 399px;
+        max-width: 440px; /* Increased from 399px to make them wider */
         height: 494px;
         margin: 0 auto;
         box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.15);
@@ -400,7 +401,7 @@
     .room-img {
         position: relative;
         width: calc(100% - 12px); /* Leaves exactly 6px on each side */
-        height: 250.52px;
+        height: 200px; /* Reduced to give text more space */
         margin: 11px auto 0; /* 11px space from top, auto handles the sides */
     }
     .room-img img {
@@ -414,14 +415,17 @@
         top: 15px;
         left: 15px;
         background: #1F5F41;
-        color: #fff;
+        color: #FFFFFF;
         padding: 6px 12px;
         border-radius: 4px;
-        font-size: 0.9rem;
-        font-weight: 600;
+        font-family: 'Libre Baskerville', serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0px;
     }
     .room-info {
-        padding: 25px;
+        padding: 10px 17px;
     }
     .room-amenities {
         display: flex;
@@ -435,42 +439,86 @@
         background-color: #f3f2f1;
         padding: 4px 10px 4px 4px;
         border-radius: 4px;
-        font-family: 'Inter', sans-serif;
-        font-size: 13px;
+        font-family: 'Libre Baskerville', serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
         color: #000;
     }
     .amenity-icon {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 22px;
-        height: 22px;
+        width: 28px;
+        height: 28px;
         background-color: #1F5F41;
-        border-radius: 2px;
+        border-radius: 4px;
         color: #fff;
     }
     .amenity-icon svg {
-        width: 12px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
         fill: currentColor;
     }
     .room-info h3 {
-        font-size: 1.4rem;
+        font-family: 'Libre Baskerville', serif;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 0px;
+        color: #362618;
         margin-bottom: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .room-info p {
-        font-size: 0.95rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #414141;
         margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-    .room-info .btn-outline {
-        color: #1e453e;
-        border-color: #1e453e;
+    .room-btn-primary {
+        display: flex;
+        align-items: center;
+        background-color: #FAF6EC;
         width: 100%;
-        text-align: center;
+        height: 52px;
+        border-radius: 10px;
+        text-decoration: none;
+        box-sizing: border-box;
+        padding: 4px;
+        transition: all 0.3s ease;
+        margin-top: 5px;
     }
-    .room-info .btn-outline:hover {
-        background-color: #1e453e;
-        color: #fff;
+    .room-btn-primary .icon-box {
+        width: 50px;
+        height: 42px;
+        background-color: #1F5F41;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .room-btn-primary span {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1F5F41;
+        margin-left: 15px;
+        padding-right: 25px;
+    }
+    .room-btn-primary:hover {
+        background-color: #f2e9d8;
     }
 
     /* Responsive Media Queries */
@@ -510,25 +558,66 @@
     }
     @media (max-width: 768px) {
         .hero-section {
-            height: auto;
-            padding: 100px 0;
+            height: 610px;
+            padding: 130px 0 60px 0;
+            background-position: center;
+        }
+        .hero-content {
+            flex-direction: column;
+        }
+        .hero-text {
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
         }
         .hero-text h1 {
             font-size: 2.2rem;
-            white-space: normal; /* Allow wrapping on mobile */
+            white-space: normal;
+        }
+        .hero-text p {
+            margin: 0 auto 30px auto;
+        }
+        .hero-buttons {
+            flex-direction: column;
+            width: 100%;
+            gap: 15px;
+        }
+        .hero-btn-primary, .hero-btn-outline {
+            width: 100%;
+            justify-content: center;
+        }
+        .hero-card {
+            display: none; /* Hide the hero card on mobile */
+        }
+        .about-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .about-section h2, .rooms-header h2 {
+            font-size: 28px;
+            line-height: 38px;
+            margin-bottom: 30px;
+        }
+        .about-img-left {
+            height: 220px;
+            width: 100%;
+            object-position: center;
+        }
+        .img-right-wrapper {
+            display: none; /* Hidden on mobile as per design */
+        }
+        .stats {
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 15px; /* Reduced gap to fit nicely on narrow screens */
         }
         .rooms-grid {
             grid-template-columns: 1fr;
-        }
-        .stats {
-            flex-direction: column;
             gap: 20px;
         }
-        .badge-stamp {
-            position: relative;
-            bottom: 0;
-            left: 0;
-            margin: 20px auto 0 auto;
+        .room-card {
+            margin: 0 auto;
+            max-width: 100%; /* Let it fill the mobile screen naturally */
         }
     }
 </style>
@@ -634,7 +723,7 @@
                 <!-- Room Card 1 -->
                 <div class="room-card">
                     <div class="room-img">
-                        <span class="price-tag">PKR 15,000 / Night</span>
+                        <span class="price-tag">PKR 30,000/ Night</span>
                         <img src="{{ asset('images/bed-image.jpg') }}" alt="3 Room Portion">
                     </div>
                     <div class="room-info">
@@ -653,15 +742,22 @@
                             </div>
                         </div>
                         <h3>3 Room Portion (Mountain View)</h3>
-                        <p>A spacious and well-furnished unit providing 3 lounges and dining area, offering a private balcony with breathtaking mountain views.</p>
-                        <a href="#" class="btn btn-primary">Book Your Stay Here</a>
+                        <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
+                        <a href="#" class="room-btn-primary">
+                            <div class="icon-box">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span>Book Your Stay Now</span>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Room Card 2 -->
                 <div class="room-card">
                     <div class="room-img">
-                        <span class="price-tag">PKR 15,000 / Night</span>
+                        <span class="price-tag">PKR 30,000/ Night</span>
                         <img src="{{ asset('images/bed-image.jpg') }}" alt="3 Room Portion">
                     </div>
                     <div class="room-info">
@@ -680,15 +776,22 @@
                             </div>
                         </div>
                         <h3>3 Room Portion (Mountain View)</h3>
-                        <p>A spacious and well-furnished unit providing 3 lounges and dining area, offering a private balcony with breathtaking mountain views.</p>
-                        <a href="#" class="btn btn-primary">Book Your Stay Here</a>
+                        <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
+                        <a href="#" class="room-btn-primary">
+                            <div class="icon-box">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span>Book Your Stay Now</span>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Room Card 3 -->
                 <div class="room-card">
                     <div class="room-img">
-                        <span class="price-tag">PKR 15,000 / Night</span>
+                        <span class="price-tag">PKR 30,000/ Night</span>
                         <img src="{{ asset('images/bed-image.jpg') }}" alt="3 Room Portion">
                     </div>
                     <div class="room-info">
@@ -707,8 +810,15 @@
                             </div>
                         </div>
                         <h3>3 Room Portion (Mountain View)</h3>
-                        <p>A spacious and well-furnished unit providing 3 lounges and dining area, offering a private balcony with breathtaking mountain views.</p>
-                        <a href="#" class="btn btn-primary">Book Your Stay Here</a>
+                        <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
+                        <a href="#" class="room-btn-primary">
+                            <div class="icon-box">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span>Book Your Stay Now</span>
+                        </a>
                     </div>
                 </div>
             </div>
