@@ -513,6 +513,35 @@
             height: auto;
             padding: 100px 0;
         }
+        .hero-buttons {
+            flex-direction: column;
+            width: 100%;
+            gap: 15px;
+        }
+        .hero-btn-primary {
+            width: 100%;
+            justify-content: center;
+            background-color: #1F5F41;
+            position: relative;
+            padding: 0;
+        }
+        .hero-btn-primary .icon-box {
+            position: absolute;
+            left: 25px;
+            background-color: transparent;
+            width: auto;
+            height: auto;
+            margin-right: 0;
+        }
+        .hero-btn-primary span {
+            color: #FFFFFF;
+        }
+        .hero-btn-outline {
+            width: 100%;
+            justify-content: center;
+            background-color: #FFFFFF;
+            color: #1F5F41;
+        }
         .hero-text h1 {
             font-size: 2.2rem;
             white-space: normal; /* Allow wrapping on mobile */
