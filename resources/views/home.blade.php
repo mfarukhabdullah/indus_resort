@@ -216,7 +216,7 @@
 
     /* About Section */
     .about-section {
-        padding: 80px 0;
+        padding: 50px 0;
         text-align: center;
         background-color: #fff;
     }
