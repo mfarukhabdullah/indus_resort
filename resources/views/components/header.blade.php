@@ -16,7 +16,7 @@
                 <ul class="header-nav-list">
                     <li><a href="{{ url('/') }}" class="header-nav-link">Home</a></li>
                     <li><a href="{{ url('/about') }}" class="header-nav-link">About</a></li>
-                    <li><a href="{{ url('/#rooms') }}" class="header-nav-link">Rooms & Suites</a></li>
+                    <li><a href="{{ url('/rooms') }}" class="header-nav-link">Rooms & Suites</a></li>
                     <li><a href="{{ url('/#gallery') }}" class="header-nav-link">Gallery</a></li>
                     <li><a href="{{ url('/#contact') }}" class="header-nav-link">Contact Us</a></li>
                 </ul>
