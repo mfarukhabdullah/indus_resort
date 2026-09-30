@@ -22,10 +22,11 @@
     }
     .inner-container {
         width: 100%;
-        max-width: 1350px;
+        max-width: 1200px;
         margin: 0 auto;
         text-align: left;
         padding: 0 20px;
+        box-sizing: border-box;
     }
     
     /* Typography */

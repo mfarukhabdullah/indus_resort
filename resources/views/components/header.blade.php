@@ -2,34 +2,23 @@
 <header class="indus-header" id="navbar">
     <div class="inner-container header-wrapper">
             
-            <!-- Logo Section (Exact Dimension: 226.07px x 60px) -->
+            <!-- Logo Section -->
             <a href="{{ url('/') }}" class="header-logo-container">
-                <div class="logo-badge-icon">
-                    <svg width="60" height="60" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="23" fill="#133827" stroke="#c5a059" stroke-width="1.5"/>
-                        <!-- Sun/Moon -->
-                        <circle cx="33" cy="15" r="2.5" fill="#e5bd6a"/>
-                        <!-- Mountain Peaks -->
-                        <path d="M10 33L19 20L25 28L32 17L39 33H10Z" fill="#1d543b"/>
-                        <path d="M15 33L22 23L27 30L34 19L39 33H15Z" stroke="#dfb56c" stroke-width="1.2" fill="none"/>
-                        <!-- River lines -->
-                        <path d="M12 35C16 33 20 37 25 35C30 33 34 36 38 35" stroke="#90c2a5" stroke-width="1" stroke-linecap="round"/>
-                    </svg>
-                </div>
+                <img src="{{ asset('images/web-logo.svg') }}" alt="Indus Resort Murree" class="header-logo-img">
                 <div class="logo-text-group">
-                    <span class="logo-brand-title">Indus Resort</span>
-                    <span class="logo-location-subtitle">M U R R E E</span>
+                    <span class="logo-brand-title">INDUS RESORT</span>
+                    <span class="logo-location-subtitle">MURREE</span>
                 </div>
             </a>
 
             <!-- Navigation Links Section -->
             <nav class="header-nav">
                 <ul class="header-nav-list">
-                    <li><a href="#home" class="header-nav-link">Home</a></li>
-                    <li><a href="#about" class="header-nav-link">About</a></li>
-                    <li><a href="#rooms" class="header-nav-link">Rooms & Suites</a></li>
-                    <li><a href="#gallery" class="header-nav-link">Gallery</a></li>
-                    <li><a href="#contact" class="header-nav-link">Contact Us</a></li>
+                    <li><a href="{{ url('/') }}" class="header-nav-link">Home</a></li>
+                    <li><a href="{{ url('/about') }}" class="header-nav-link">About</a></li>
+                    <li><a href="{{ url('/#rooms') }}" class="header-nav-link">Rooms & Suites</a></li>
+                    <li><a href="{{ url('/#gallery') }}" class="header-nav-link">Gallery</a></li>
+                    <li><a href="{{ url('/#contact') }}" class="header-nav-link">Contact Us</a></li>
                 </ul>
             </nav>
 
