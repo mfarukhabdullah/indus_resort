@@ -21,6 +21,10 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
+Route::get('/rooms', function () {
+    return view('rooms');
+})->name('rooms');
+
 Route::get('/header', function () {
     return view('header-preview');
 });
