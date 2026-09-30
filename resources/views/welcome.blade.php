@@ -252,46 +252,10 @@
     </section>
 
     <!-- Guest Reviews / Testimonials -->
-    <section class="section" id="testimonials" style="background: rgba(7, 19, 17, 0.3);">
-        <div class="outer-container">
-            <div class="container-1240">
-                <div class="section-header">
-                    <span class="section-tag">GUEST TESTIMONIALS</span>
-                    <h2 class="section-title">Voices of <span class="gold-gradient-text">Sanctuary</span></h2>
-                    <div class="section-divider"></div>
-                </div>
+    @include('testimonial')
 
-                <div class="amenities-grid">
-                    <div class="amenity-card" style="text-align: left; padding: 2rem;">
-                        <div style="color: var(--gold-bright); margin-bottom: 1rem;">
-                            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                        </div>
-                        <p style="color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem;">"An unforgettable getaway! The river views from our Presidential Villa were surreal, and the butler service made us feel like royalty."</p>
-                        <h4 style="color: var(--text-light);" class="font-heading">Sophia & Alexander Sterling</h4>
-                        <span style="color: var(--gold-primary); font-size: 0.8rem;">London, United Kingdom</span>
-                    </div>
-
-                    <div class="amenity-card" style="text-align: left; padding: 2rem;">
-                        <div style="color: var(--gold-bright); margin-bottom: 1rem;">
-                            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                        </div>
-                        <p style="color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem;">"The serene atmosphere, infinity pool, and world-class spa treatments allowed us to truly unwind. Best luxury resort experience."</p>
-                        <h4 style="color: var(--text-light);" class="font-heading">Dr. Tariq & Aisha Mansoor</h4>
-                        <span style="color: var(--gold-primary); font-size: 0.8rem;">Dubai, UAE</span>
-                    </div>
-
-                    <div class="amenity-card" style="text-align: left; padding: 2rem;">
-                        <div style="color: var(--gold-bright); margin-bottom: 1rem;">
-                            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                        </div>
-                        <p style="color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem;">"Dining under the stars by the Indus river was magical. Attention to architectural detail and hospitality is unmatched."</p>
-                        <h4 style="color: var(--text-light);" class="font-heading">Elena Rostova</h4>
-                        <span style="color: var(--gold-primary); font-size: 0.8rem;">Zurich, Switzerland</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- CTA Section -->
+    @include('cta')
 
     <!-- Footer Component -->
     @include('components.footer')

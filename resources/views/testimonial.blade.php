@@ -1,8 +1,29 @@
 <style>
     .testimonial-section {
-        background-color: #17362f;
+        position: relative;
+        background-color: #0c251c;
         padding: 80px 0;
         color: #fff;
+        overflow: hidden;
+        margin-top:55px;
+    }
+    .testimonial-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('{{ asset("images/guest-bg-img.png") }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.15;
+        z-index: 1;
+    }
+    .testimonial-section > * {
+        position: relative;
+        z-index: 2;
     }
     .testimonial-header {
         text-align: center;
@@ -10,11 +31,13 @@
     }
     .testimonial-header h2 {
         color: #fff;
+        font-family: 'Libre Baskerville', 'Playfair Display', serif;
         font-size: 2.5rem;
         margin-bottom: 10px;
+        font-weight: 400;
     }
     .testimonial-header p {
-        color: #c4d4d1;
+        color: rgba(255, 255, 255, 0.85);
         font-size: 1rem;
     }
     .testimonial-grid {
@@ -23,18 +46,21 @@
         gap: 30px;
     }
     .testimonial-card {
-        background-color: #21433b;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         padding: 30px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .stars {
-        color: #c99a4e;
+        color: #dfb56c;
         font-size: 1.2rem;
         margin-bottom: 15px;
+        letter-spacing: 2px;
     }
     .testimonial-card p {
-        color: #e2e8e6;
+        color: rgba(255, 255, 255, 0.9);
         font-size: 0.95rem;
         line-height: 1.6;
         margin-bottom: 25px;
@@ -45,18 +71,20 @@
         gap: 15px;
     }
     .guest-avatar {
-        width: 40px;
-        height: 40px;
-        background-color: #fff;
+        width: 44px;
+        height: 44px;
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 50%;
+        flex-shrink: 0;
     }
     .guest-details h5 {
         font-size: 1rem;
         color: #fff;
+        font-weight: 600;
     }
     .guest-details span {
         font-size: 0.8rem;
-        color: #9cb5b0;
+        color: rgba(255, 255, 255, 0.65);
     }
 
     /* Responsive Media Queries */
@@ -75,17 +103,17 @@
     }
 </style>
 
-<section class="testimonial-section">
+<section class="testimonial-section" id="testimonials">
     <div class="inner-container">
         <div class="testimonial-header">
             <h2>What Our Guests Say</h2>
-            <p>Authentic reviews from our previous guests to help you choose the best stay.</p>
+            <p>Real stories from families and travellers who found their peaceful escape at Indus Resort.</p>
         </div>
         
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p>"Beautiful, stunning views and warm hospitality. The staff goes out of their way to make our family trip memorable."</p>
+                <p>"Absolutely stunning views and warm hospitality. The staff went out of their way to make our family trip memorable."</p>
                 <div class="guest-info">
                     <div class="guest-avatar"></div>
                     <div class="guest-details">
@@ -97,7 +125,7 @@
 
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p>"Beautiful, stunning views and warm hospitality. The staff goes out of their way to make our family trip memorable."</p>
+                <p>"Absolutely stunning views and warm hospitality. The staff went out of their way to make our family trip memorable."</p>
                 <div class="guest-info">
                     <div class="guest-avatar"></div>
                     <div class="guest-details">
@@ -109,7 +137,7 @@
 
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p>"Beautiful, stunning views and warm hospitality. The staff goes out of their way to make our family trip memorable."</p>
+                <p>"Absolutely stunning views and warm hospitality. The staff went out of their way to make our family trip memorable."</p>
                 <div class="guest-info">
                     <div class="guest-avatar"></div>
                     <div class="guest-details">
