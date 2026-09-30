@@ -1,6 +1,12 @@
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indus Resort Murree</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
     @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
     
     /* Reset & Base */
@@ -604,9 +610,12 @@
         }
         .hero-text h1 {
             font-size: 2.2rem;
+            line-height: 1.2;
             white-space: normal;
         }
         .hero-text p {
+            font-size: 16px;
+            line-height: 24px;
             margin: 0 auto 30px auto;
         }
 
@@ -677,6 +686,8 @@
         }
     }
 </style>
+</head>
+<body>
 
 @include('components.header')
 <div class="page-wrapper">
@@ -889,3 +900,6 @@
 </div>
 
 @include('components.footer')
+
+</body>
+</html>
