@@ -80,7 +80,7 @@
 
     /* Section 1: Story */
     .about-story {
-        padding: 60px 0;
+        padding: 45px 0;
         background-color: #fff;
         width: 100%;
     }
@@ -214,7 +214,7 @@
 
     /* Section 3: Stats */
     .about-stats {
-        background: linear-gradient(rgba(19, 56, 39, 0.85), rgba(19, 56, 39, 0.85)), url('{{ asset("images/numbers-background.png") }}') center/cover;
+        background: linear-gradient(rgba(8, 26, 19, 0.6), rgba(8, 26, 19, 0.6)), url('{{ asset("images/numbers-background.png") }}') center/cover;
         height: 300px;
         display: flex;
         align-items: center;
@@ -276,7 +276,7 @@
     .reasons-text p {
         color: #000;
         line-height: 1.6;
-        font-size: 15px;
+        font-size: 16px;
     }
     .reasons-cards-top {
         grid-column: span 2;
@@ -300,7 +300,7 @@
         align-items: center;
         justify-content: center;
         height: 100%;
-        min-height: 170px;
+        min-height: 200px;
     }
     .reason-box:hover {
         transform: translateY(-5px);
@@ -314,8 +314,8 @@
         height: 48px;
     }
     .reason-icon img {
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
         object-fit: contain;
     }
     .reason-box h4 {
@@ -437,6 +437,7 @@
             padding: 30px 12px;
             border-radius: 12px;
             text-align: center;
+            min-height: 150px;
         }
         .reason-box h4 {
             font-family: 'Libre Baskerville', serif;

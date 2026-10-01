@@ -113,17 +113,34 @@
         padding: 8px 16px 8px 8px;
         border-radius: 8px;
         text-decoration: none;
-        transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         display: flex;
         align-items: center;
         justify-content: flex-start;
         box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    .cta-book-btn::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        height: calc(100% - 16px);
+        width: 0%;
+        background-color: #1F5F41;
+        border-radius: 6px;
+        transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 1;
+    }
+    .cta-book-btn:hover::before {
+        width: calc(100% - 16px);
     }
     .cta-book-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-        background-color: #fcfcfc;
+        transform: none !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+        background-color: #ffffff !important;
     }
     .cta-btn-icon {
         width: 44px;
@@ -134,6 +151,8 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        position: relative;
+        z-index: 2;
     }
     .cta-book-btn span {
         flex: 1;
@@ -141,6 +160,12 @@
         margin-right: 44px;
         color: #1F5F41;
         font-family: 'Libre Baskerville', 'Playfair Display', serif;
+        position: relative;
+        z-index: 2;
+        transition: color 0.3s ease;
+    }
+    .cta-book-btn:hover span {
+        color: #FFFFFF !important;
     }
 
     /* Responsive Media Queries */
@@ -209,7 +234,7 @@
                 <div class="cta-lines"></div>
                 <div class="cta-text-btn">
                     <p>Reserve your room today and experience the beauty of Murree at Indus Resort.</p>
-                    <a href="#bookingModal" class="cta-book-btn">
+                    <a href="https://wa.me/923000053333" target="_blank" class="cta-book-btn">
                         <div class="cta-btn-icon">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
