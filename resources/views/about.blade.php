@@ -26,6 +26,104 @@
         background-color: #fff;
         overflow: hidden;
     }
+
+    /* Scroll Triggered Animations */
+    .story-images,
+    .story-text h2,
+    .story-text p,
+    .story-text .btn-explore,
+    .about-different h2,
+    .about-different > .inner-container > p,
+    .feature-card,
+    .stat-box,
+    .reasons-text h2,
+    .reasons-text p,
+    .reason-box {
+        opacity: 0;
+        transform: translateY(65px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .story-images.is-visible,
+    .story-text h2.is-visible,
+    .story-text p.is-visible,
+    .story-text .btn-explore.is-visible,
+    .about-different h2.is-visible,
+    .about-different > .inner-container > p.is-visible,
+    .feature-card.is-visible,
+    .stat-box.is-visible,
+    .reasons-text h2.is-visible,
+    .reasons-text p.is-visible,
+    .reason-box.is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition-delay: 0s !important;
+    }
+
+    /* Stagger Delays */
+    .story-images {
+        transition-delay: 0.1s;
+    }
+    .story-text h2 {
+        transition-delay: 0.1s;
+    }
+    .story-text p {
+        transition-delay: 0.2s;
+    }
+    .story-text .btn-explore {
+        transition-delay: 0.35s;
+    }
+    .about-different > .inner-container > p {
+        transition-delay: 0.15s;
+    }
+    .features-grid .feature-card:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    .features-grid .feature-card:nth-child(2) {
+        transition-delay: 0.25s;
+    }
+    .features-grid .feature-card:nth-child(3) {
+        transition-delay: 0.4s;
+    }
+    .features-grid .feature-card:nth-child(4) {
+        transition-delay: 0.55s;
+    }
+    .stats-grid .stat-box:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    .stats-grid .stat-box:nth-child(2) {
+        transition-delay: 0.25s;
+    }
+    .stats-grid .stat-box:nth-child(3) {
+        transition-delay: 0.4s;
+    }
+    .stats-grid .stat-box:nth-child(4) {
+        transition-delay: 0.55s;
+    }
+    .reasons-text p {
+        transition-delay: 0.15s;
+    }
+    .reasons-cards-top .reason-box:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    .reasons-cards-top .reason-box:nth-child(2) {
+        transition-delay: 0.25s;
+    }
+    .reasons-cards-bottom .reason-box:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    .reasons-cards-bottom .reason-box:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+    .reasons-cards-bottom .reason-box:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+    .reasons-cards-bottom .reason-box:nth-child(4) {
+        transition-delay: 0.4s;
+    }
     
     /* Typography */
     h1, h2, h3 {
@@ -181,6 +279,10 @@
         align-items: center;
         text-align: center;
         min-height: 300px;
+        transition: background-color 0.3s ease, 
+                    border-color 0.3s ease, 
+                    box-shadow 0.3s ease, 
+                    transform 0.3s ease;
     }
     .feature-icon {
         width: 63px;
@@ -191,6 +293,7 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 20px;
+        transition: background-color 0.3s ease;
     }
     .feature-icon img {
         width: 27px;
@@ -203,6 +306,7 @@
         line-height: 24px;
         color: #000000;
         margin-bottom: 15px;
+        transition: color 0.3s ease;
     }
     .feature-card p {
         font-family: 'Inter', sans-serif;
@@ -210,6 +314,29 @@
         font-size: 16px;
         line-height: 28px;
         color: #000000;
+        transition: color 0.3s ease;
+    }
+
+    /* Immediate background change on hover & unhover without any delay pause */
+    .feature-card:hover,
+    .feature-card:hover .feature-icon,
+    .feature-card:hover h3,
+    .feature-card:hover p {
+        transition-delay: 0s !important;
+    }
+
+    .feature-card:hover {
+        background-color: #1F5F41 !important;
+        border-color: #1F5F41 !important;
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(31, 95, 65, 0.25);
+    }
+    .feature-card:hover .feature-icon {
+        background-color: #ffffff !important;
+    }
+    .feature-card:hover h3,
+    .feature-card:hover p {
+        color: #ffffff !important;
     }
 
     /* Section 3: Stats */
@@ -624,44 +751,76 @@
 @include('components.footer')
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const counters = document.querySelectorAll('.counter');
-        
-        const observerOptions = {
-            threshold: 0.5
-        };
-        
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    const target = parseFloat(counter.getAttribute('data-target'));
-                    const isDecimal = counter.hasAttribute('data-decimals');
-                    const duration = 2000; // ms
-                    const stepTime = 20;
-                    const steps = duration / stepTime;
-                    const increment = target / steps;
-                    let current = 0;
-                    
-                    const updateCounter = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            counter.innerText = isDecimal ? target.toFixed(1) : Math.round(target);
-                            clearInterval(updateCounter);
-                        } else {
-                            counter.innerText = isDecimal ? current.toFixed(1) : Math.round(current);
-                        }
-                    }, stepTime);
-                    
-                    observer.unobserve(counter);
+    (function () {
+        function animateCounter(counterEl) {
+            if (counterEl.dataset.animating === 'true' || counterEl.dataset.completed === 'true') return;
+            counterEl.dataset.animating = 'true';
+            
+            const target = parseFloat(counterEl.dataset.target) || 0;
+            const isDecimal = counterEl.hasAttribute('data-decimals');
+            const duration = 1200;
+            const startTime = performance.now();
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const currentVal = progress * target;
+
+                counterEl.textContent = isDecimal ? currentVal.toFixed(1) : Math.round(currentVal);
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    counterEl.textContent = isDecimal ? target.toFixed(1) : Math.round(target);
+                    counterEl.dataset.animating = 'false';
+                    counterEl.dataset.completed = 'true';
                 }
-            });
-        }, observerOptions);
-        
-        counters.forEach(counter => {
-            observer.observe(counter);
-        });
-    });
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        function resetCounter(counterEl) {
+            const isDecimal = counterEl.hasAttribute('data-decimals');
+            counterEl.dataset.animating = 'false';
+            counterEl.dataset.completed = 'false';
+            counterEl.textContent = isDecimal ? '0.0' : '0';
+        }
+
+        function initScrollAnimations() {
+            const elements = document.querySelectorAll('.story-images, .story-text h2, .story-text p, .story-text .btn-explore, .about-different h2, .about-different > .inner-container > p, .feature-card, .stat-box, .reasons-text h2, .reasons-text p, .reason-box');
+            if (!elements.length) return;
+
+            function checkScroll() {
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= windowHeight * 0.98 && rect.bottom >= 0) {
+                        el.classList.add('is-visible');
+
+                        const counters = el.querySelectorAll('.counter-num, .counter');
+                        counters.forEach(animateCounter);
+                    } else if (rect.top > windowHeight + 100) {
+                        el.classList.remove('is-visible');
+
+                        const counters = el.querySelectorAll('.counter-num, .counter');
+                        counters.forEach(resetCounter);
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkScroll, { passive: true });
+            window.addEventListener('resize', checkScroll, { passive: true });
+            checkScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initScrollAnimations);
+        } else {
+            initScrollAnimations();
+        }
+    })();
 </script>
 </body>
 </html>

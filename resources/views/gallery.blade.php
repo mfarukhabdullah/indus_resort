@@ -18,6 +18,34 @@
     p { color: #000; line-height: 1.6; }
     .inner-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
 
+    /* Scroll Triggered Animations for Gallery Intro */
+    .section-tag,
+    .gallery-intro h2,
+    .gallery-intro p {
+        opacity: 0;
+        transform: translateY(65px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .section-tag.is-visible,
+    .gallery-intro h2.is-visible,
+    .gallery-intro p.is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition-delay: 0s !important;
+    }
+
+    /* Stagger Delays */
+    .gallery-intro h2 {
+        transition-delay: 0.1s;
+    }
+    .gallery-intro p {
+        transition-delay: 0.2s;
+    }
+
     /* Hero */
     .about-hero {
         position: relative;
@@ -370,6 +398,36 @@
             item.style.display = (category === 'all' || item.dataset.category === category) ? '' : 'none';
         });
     }
+
+    (function () {
+        function initScrollAnimations() {
+            const elements = document.querySelectorAll('.section-tag, .gallery-intro h2, .gallery-intro p');
+            if (!elements.length) return;
+
+            function checkScroll() {
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= windowHeight * 0.98 && rect.bottom >= 0) {
+                        el.classList.add('is-visible');
+                    } else if (rect.top > windowHeight + 100) {
+                        el.classList.remove('is-visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkScroll, { passive: true });
+            window.addEventListener('resize', checkScroll, { passive: true });
+            checkScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initScrollAnimations);
+        } else {
+            initScrollAnimations();
+        }
+    })();
 </script>
 
 </body>
