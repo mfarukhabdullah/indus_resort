@@ -663,6 +663,12 @@
         .hero-text h1 {
             font-size: 2.8rem;
             white-space: normal; /* Allow wrapping on smaller screens */
+            height: auto;
+            overflow: visible;
+        }
+        .hero-text p {
+            height: auto;
+            overflow: visible;
         }
         .about-grid {
             grid-template-columns: 1fr;
@@ -681,8 +687,9 @@
     }
     @media (max-width: 768px) {
         .hero-section {
-            height: 610px;
-            padding: 130px 0 60px 0;
+            height: auto;
+            min-height: 560px;
+            padding: 110px 0 50px 0;
             background-position: center;
         }
         .hero-content {
@@ -698,7 +705,86 @@
             width: 100%;
             gap: 15px;
             align-items: center;
+            margin-top: 15px;
         }
+        /* Disable all hover effects, pseudo-elements, and transitions on buttons in mobile view */
+        .btn,
+        .hero-btn-primary,
+        .hero-btn-outline,
+        .room-btn-primary,
+        .cta-book-btn,
+        button,
+        a[class*="btn"] {
+            transition: none !important;
+            animation: none !important;
+            transform: none !important;
+        }
+
+        .hero-btn-primary::before,
+        .hero-btn-primary:hover::before,
+        .hero-btn-primary:focus::before,
+        .hero-btn-primary:active::before,
+        .room-btn-primary::before,
+        .room-btn-primary:hover::before,
+        .room-btn-primary:focus::before,
+        .room-btn-primary:active::before,
+        .cta-book-btn::before,
+        .cta-book-btn:hover::before,
+        .cta-book-btn:focus::before,
+        .cta-book-btn:active::before {
+            display: none !important;
+            width: 0 !important;
+            transition: none !important;
+        }
+
+        .hero-btn-primary:hover,
+        .hero-btn-primary:focus,
+        .hero-btn-primary:active {
+            background-color: #1F5F41 !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        .hero-btn-primary:hover span,
+        .hero-btn-primary:focus span,
+        .hero-btn-primary:active span {
+            color: #FFFFFF !important;
+        }
+
+        .hero-btn-outline:hover,
+        .hero-btn-outline:focus,
+        .hero-btn-outline:active {
+            background-color: #FFFFFF !important;
+            color: #1F5F41 !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .room-btn-primary:hover,
+        .room-btn-primary:focus,
+        .room-btn-primary:active {
+            background-color: #1F5F41 !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        .room-btn-primary:hover span,
+        .room-btn-primary:focus span,
+        .room-btn-primary:active span {
+            color: #FFFFFF !important;
+        }
+
+        .cta-book-btn:hover,
+        .cta-book-btn:focus,
+        .cta-book-btn:active {
+            background-color: #1F5F41 !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        .cta-book-btn:hover span,
+        .cta-book-btn:focus span,
+        .cta-book-btn:active span {
+            color: #FFFFFF !important;
+        }
+
         .hero-btn-primary, .hero-btn-outline {
             width: 350px;
             max-width: 90%;
@@ -726,13 +812,19 @@
         }
         .hero-text h1 {
             font-size: 2.2rem;
-            line-height: 1.2;
+            line-height: 1.25;
             white-space: normal;
+            height: auto;
+            overflow: visible;
+            margin-bottom: 15px;
         }
         .hero-text p {
-            font-size: 16px;
+            font-size: 15px;
             line-height: 24px;
-            margin: 0 auto 30px auto;
+            height: auto;
+            overflow: visible;
+            margin: 0 auto 35px auto;
+            max-width: 92%;
         }
 
         .hero-card {
@@ -765,6 +857,10 @@
             border-top: none;
             width: 100%;
             padding: 15px 0 0 0;
+        }
+        .rooms-section {
+            padding: 30px 0;
+            margin-bottom: 10px;
         }
         .rooms-grid {
             grid-template-columns: 1fr;
@@ -823,10 +919,10 @@
                             </div>
                             <span>Book Your Stay</span>
                         </a>
-                        <a href="#rooms" class="hero-btn-outline">Explore Rooms</a>
+                        <a href="{{ route('rooms') }}" class="hero-btn-outline">Explore Rooms</a>
                     </div>
                 </div>
-                <a href="#rooms" class="hero-card" style="text-decoration: none;">
+                <a href="{{ route('rooms') }}" class="hero-card" style="text-decoration: none;">
                     <img src="{{ asset('images/bedroom-image.png') }}" alt="Cozy Bedroom">
                     <div>
                         <h3>Book Your Stay Now</h3>
@@ -901,11 +997,17 @@
             </div>
             
             <div class="rooms-grid">
-                <!-- Room Card 1 -->
+                @php
+                    $displayRooms = isset($rooms) && is_array($rooms) ? array_slice($rooms, 0, 3) : array_slice((new \App\Http\Controllers\RoomController)->rooms(), 0, 3);
+                @endphp
+                @foreach($displayRooms as $room)
                 <div class="room-card">
                     <div class="room-img">
-                        <span class="price-tag">PKR 30,000/ Night</span>
-                        <img src="{{ asset('images/bed-image.jpg') }}" alt="3 Room Portion">
+                        <span class="price-tag">PKR {{ $room['price'] ?? '35,000' }}/ Night</span>
+                        @php
+                            $firstImg = !empty($room['images'][0]) ? $room['images'][0] : 'images/bed-image.jpg';
+                        @endphp
+                        <img src="{{ asset($firstImg) }}" alt="{{ $room['title'] }}">
                     </div>
                     <div class="room-info">
                         <div class="room-amenities">
@@ -913,17 +1015,17 @@
                                 <div class="amenity-icon">
                                     <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 </div>
-                                5.0
+                                {{ !empty($room['rating']) ? $room['rating'] : '5.0' }}
                             </div>
                             <div class="amenity-badge">
                                 <div class="amenity-icon">
                                     <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
                                 </div>
-                                3 Bedrooms
+                                {{ $room['bedrooms'] ?? '3' }} Bedrooms
                             </div>
                         </div>
-                        <h3>3 Room Portion (Mountain View)</h3>
-                        <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
+                        <h3>{{ $room['title'] }}</h3>
+                        <p>{{ $room['description'] }}</p>
                         <a href="https://wa.me/923000053333" target="_blank" class="room-btn-primary">
                             <div class="icon-box">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -934,74 +1036,7 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Room Card 2 -->
-                <div class="room-card">
-                    <div class="room-img">
-                        <span class="price-tag">PKR 30,000/ Night</span>
-                        <img src="{{ asset('images/bed-image.jpg') }}" alt="3 Room Portion">
-                    </div>
-                    <div class="room-info">
-                        <div class="room-amenities">
-                            <div class="amenity-badge">
-                                <div class="amenity-icon">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                                </div>
-                                5.0
-                            </div>
-                            <div class="amenity-badge">
-                                <div class="amenity-icon">
-                                    <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
-                                </div>
-                                3 Bedrooms
-                            </div>
-                        </div>
-                        <h3>3 Room Portion (Mountain View)</h3>
-                        <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
-                        <a href="https://wa.me/923000053333" target="_blank" class="room-btn-primary">
-                            <div class="icon-box">
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <span>Book Your Stay Now</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Room Card 3 -->
-                <div class="room-card">
-                    <div class="room-img">
-                        <span class="price-tag">PKR 30,000/ Night</span>
-                        <img src="{{ asset('images/bed-image.jpg') }}" alt="3 Room Portion">
-                    </div>
-                    <div class="room-info">
-                        <div class="room-amenities">
-                            <div class="amenity-badge">
-                                <div class="amenity-icon">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                                </div>
-                                5.0
-                            </div>
-                            <div class="amenity-badge">
-                                <div class="amenity-icon">
-                                    <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
-                                </div>
-                                3 Bedrooms
-                            </div>
-                        </div>
-                        <h3>3 Room Portion (Mountain View)</h3>
-                        <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
-                        <a href="https://wa.me/923000053333" target="_blank" class="room-btn-primary">
-                            <div class="icon-box">
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <span>Book Your Stay Now</span>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

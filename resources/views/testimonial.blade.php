@@ -107,6 +107,13 @@
         background-color: rgba(255, 255, 255, 0.9);
         border-radius: 50%;
         flex-shrink: 0;
+        overflow: hidden;
+    }
+    .guest-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
     }
     .guest-details h5 {
         font-size: 1rem;
@@ -125,6 +132,11 @@
         }
     }
     @media (max-width: 768px) {
+        .testimonial-section {
+            margin-top: 10px;
+            margin-bottom: 0;
+            padding: 30px 0 20px 0;
+        }
         .testimonial-grid {
             grid-template-columns: 1fr;
         }
@@ -154,7 +166,9 @@
                 <div class="stars">★★★★★</div>
                 <p>"Absolutely stunning views and warm hospitality. The staff went out of their way to make our family trip memorable."</p>
                 <div class="guest-info">
-                    <div class="guest-avatar"></div>
+                    <div class="guest-avatar">
+                        <img src="{{ asset('images/avatar-ahmed.jpg') }}" alt="Ahmed Raza">
+                    </div>
                     <div class="guest-details">
                         <h5>Ahmed Raza</h5>
                         <span>Lahore</span>
@@ -164,24 +178,28 @@
 
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p>"Absolutely stunning views and warm hospitality. The staff went out of their way to make our family trip memorable."</p>
+                <p>"The valley view from our balcony was breathtaking. Clean rooms, delicious food, and wonderful hospitality."</p>
                 <div class="guest-info">
-                    <div class="guest-avatar"></div>
+                    <div class="guest-avatar">
+                        <img src="{{ asset('images/avatar-fatima.jpg') }}" alt="Fatima Malik">
+                    </div>
                     <div class="guest-details">
-                        <h5>Ahmed Raza</h5>
-                        <span>Lahore</span>
+                        <h5>Fatima Malik</h5>
+                        <span>Islamabad</span>
                     </div>
                 </div>
             </div>
 
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p>"Absolutely stunning views and warm hospitality. The staff went out of their way to make our family trip memorable."</p>
+                <p>"An unforgettable getaway in Murree! The bonfire night under the starry sky was magical. We will definitely visit again."</p>
                 <div class="guest-info">
-                    <div class="guest-avatar"></div>
+                    <div class="guest-avatar">
+                        <img src="{{ asset('images/avatar-usman.jpg') }}" alt="Usman Khan">
+                    </div>
                     <div class="guest-details">
-                        <h5>Ahmed Raza</h5>
-                        <span>Lahore</span>
+                        <h5>Usman Khan</h5>
+                        <span>Karachi</span>
                     </div>
                 </div>
             </div>

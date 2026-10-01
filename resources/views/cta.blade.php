@@ -173,7 +173,9 @@
         .cta-section {
             height: auto;
             min-height: 380px;
-            padding: 40px 0;
+            padding: 20px 0;
+            margin-top: 10px !important;
+            margin-bottom: 10px !important;
         }
         .cta-card {
             width: 100% !important;
@@ -201,8 +203,19 @@
             align-items: center; 
             width: 100%;
         }
-        .cta-book-btn {
+        .cta-book-btn,
+        .cta-book-btn *,
+        .cta-book-btn::before,
+        .cta-book-btn::after {
+            transition: none !important;
+            animation: none !important;
+        }
+        .cta-book-btn,
+        .cta-book-btn:hover,
+        .cta-book-btn:focus,
+        .cta-book-btn:active {
             background-color: #1F5F41 !important;
+            color: #FFFFFF !important;
             position: relative !important;
             padding: 0 !important;
             justify-content: center !important;
@@ -210,6 +223,15 @@
             max-width: 100% !important;
             height: 52px !important;
             margin: 0 auto;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        .cta-book-btn::before,
+        .cta-book-btn:hover::before,
+        .cta-book-btn:focus::before,
+        .cta-book-btn:active::before {
+            display: none !important;
+            width: 0 !important;
         }
         .cta-btn-icon {
             position: absolute !important;
@@ -218,7 +240,10 @@
             width: auto !important;
             height: auto !important;
         }
-        .cta-book-btn span {
+        .cta-book-btn span,
+        .cta-book-btn:hover span,
+        .cta-book-btn:focus span,
+        .cta-book-btn:active span {
             color: #FFFFFF !important;
             margin-right: 0 !important;
         }

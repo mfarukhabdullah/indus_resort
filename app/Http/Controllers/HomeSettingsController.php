@@ -27,7 +27,11 @@ class HomeSettingsController extends Controller
 
     public function home()
     {
-        return view('home', ['homeSettings' => $this->settings()]);
+        $rooms = (new RoomController)->rooms();
+        return view('home', [
+            'homeSettings' => $this->settings(),
+            'rooms' => array_slice($rooms, 0, 3)
+        ]);
     }
 
     public function edit()
