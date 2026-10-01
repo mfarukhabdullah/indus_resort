@@ -60,6 +60,7 @@
 </div>
 <script>
 const sidebar=document.getElementById('sidebar'); document.querySelector('.menu-toggle').onclick=()=>sidebar.classList.add('open'); document.querySelector('.sidebar-close').onclick=()=>sidebar.classList.remove('open'); document.querySelectorAll('.menu a').forEach(a=>a.onclick=()=>{document.querySelectorAll('.menu a').forEach(x=>x.classList.remove('active'));a.classList.add('active');sidebar.classList.remove('open')});
+const adminSearch=document.querySelector('.search input');if(adminSearch){adminSearch.addEventListener('keydown',function(e){if(e.key!=='Enter')return;e.preventDefault();const q=this.value.toLowerCase().trim();const destinations=[['room','{{ route('admin.rooms') }}'],['suite','{{ route('admin.rooms') }}'],['gallery','{{ route('admin.gallery') }}'],['photo','{{ route('admin.gallery') }}'],['message','{{ route('admin.messages') }}'],['contact','{{ route('admin.contact-settings') }}'],['footer','{{ route('admin.footer-settings') }}'],['seo','{{ route('admin.seo-settings') }}'],['meta','{{ route('admin.seo-settings') }}'],['home','{{ route('admin.home-settings') }}']];const found=destinations.find(item=>q.includes(item[0]));if(found)window.location.href=found[1];else this.setCustomValidity('Try: rooms, gallery, messages, contact, footer, SEO or home.');});adminSearch.addEventListener('input',function(){this.setCustomValidity('')});}
 </script>
 </body>
 </html>
