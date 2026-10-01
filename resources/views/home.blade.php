@@ -269,7 +269,8 @@
         flex-direction: column;
         align-items: center;
     }
-    .about-section h2 {
+    .about-section h2,
+    .about-heading-scroll {
         font-family: 'Libre Baskerville', serif;
         font-weight: 700;
         font-size: 40px;
@@ -279,13 +280,16 @@
         max-width: 695px;
         text-align: center;
         opacity: 0;
-        transform: translateY(50px);
+        transform: translateY(65px);
         transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: opacity, transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
-    .about-section h2.is-visible {
-        opacity: 1;
-        transform: translateY(0);
+    .about-section h2.is-visible,
+    .about-heading-scroll.is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
     }
     .about-grid {
         display: grid;
@@ -445,6 +449,37 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 15px; /* Reduced from 30px to make them closer */
+    }
+    .rooms-header h2,
+    .rooms-header p,
+    .room-card {
+        opacity: 0;
+        transform: translateY(65px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    .rooms-header h2.is-visible,
+    .rooms-header p.is-visible,
+    .room-card.is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    .rooms-header p {
+        transition-delay: 0.15s;
+    }
+    .rooms-grid .room-card:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    .rooms-grid .room-card:nth-child(2) {
+        transition-delay: 0.3s;
+    }
+    .rooms-grid .room-card:nth-child(3) {
+        transition-delay: 0.5s;
+    }
+    .rooms-grid .room-card:nth-child(4) {
+        transition-delay: 0.7s;
     }
     .room-card {
         background: #FFFFFF;
@@ -819,11 +854,11 @@
                     </ul>
                     <div class="stats">
                         <div class="stat-item">
-                            <h4>12+</h4>
+                            <h4 class="counter-num" data-target="12" data-suffix="+">12+</h4>
                             <span>Years of Service</span>
                         </div>
                         <div class="stat-item">
-                            <h4>20k+</h4>
+                            <h4 class="counter-num" data-target="20" data-suffix="k+">20k+</h4>
                             <span>SATISFIED VISITORS</span>
                         </div>
                     </div>
@@ -980,29 +1015,77 @@
 
 <script>
     (function () {
-        function initAboutAnimation() {
-            const heading = document.querySelector('.about-heading-scroll');
-            if (heading) {
-                const observer = new IntersectionObserver((entries, obs) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('is-visible');
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    root: null,
-                    rootMargin: '0px 0px -50px 0px',
-                    threshold: 0.1
-                });
-                observer.observe(heading);
+        function animateCounter(counterEl) {
+            if (counterEl.dataset.animating === 'true' || counterEl.dataset.completed === 'true') return;
+            counterEl.dataset.animating = 'true';
+            
+            const target = parseInt(counterEl.dataset.target, 10) || 0;
+            const suffix = counterEl.dataset.suffix || '';
+            const duration = 1200;
+            const startTime = performance.now();
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Constant linear speed - smooth uniform step per number
+                const currentVal = Math.round(progress * target);
+
+                counterEl.textContent = currentVal + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    counterEl.textContent = target + suffix;
+                    counterEl.dataset.animating = 'false';
+                    counterEl.dataset.completed = 'true';
+                }
             }
+
+            requestAnimationFrame(step);
+        }
+
+        function resetCounter(counterEl) {
+            const suffix = counterEl.dataset.suffix || '';
+            counterEl.dataset.animating = 'false';
+            counterEl.dataset.completed = 'false';
+            counterEl.textContent = '0' + suffix;
+        }
+
+        function initScrollAnimations() {
+            const elements = document.querySelectorAll('.about-heading-scroll, .rooms-header h2, .rooms-header p, .room-card, .testimonial-header h2, .testimonial-header p, .testimonial-card, .stats');
+            if (!elements.length) return;
+
+            function checkScroll() {
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    // Trigger transition instantly as soon as top edge touches bottom 98% of viewport
+                    if (rect.top <= windowHeight * 0.98 && rect.bottom >= 0) {
+                        el.classList.add('is-visible');
+
+                        // Animate any counters inside the element
+                        const counters = el.querySelectorAll('.counter-num');
+                        counters.forEach(animateCounter);
+                    } else if (rect.top > windowHeight + 100) {
+                        // Reset state only when user scrolls far back above the element
+                        el.classList.remove('is-visible');
+
+                        const counters = el.querySelectorAll('.counter-num');
+                        counters.forEach(resetCounter);
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkScroll, { passive: true });
+            window.addEventListener('resize', checkScroll, { passive: true });
+            checkScroll();
         }
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initAboutAnimation);
+            document.addEventListener('DOMContentLoaded', initScrollAnimations);
         } else {
-            initAboutAnimation();
+            initScrollAnimations();
         }
     })();
 </script>

@@ -40,6 +40,34 @@
         color: rgba(255, 255, 255, 0.85);
         font-size: 1rem;
     }
+    .testimonial-header h2,
+    .testimonial-header p,
+    .testimonial-card {
+        opacity: 0;
+        transform: translateY(65px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    .testimonial-header h2.is-visible,
+    .testimonial-header p.is-visible,
+    .testimonial-card.is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    .testimonial-header p {
+        transition-delay: 0.15s;
+    }
+    .testimonial-grid .testimonial-card:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    .testimonial-grid .testimonial-card:nth-child(2) {
+        transition-delay: 0.3s;
+    }
+    .testimonial-grid .testimonial-card:nth-child(3) {
+        transition-delay: 0.5s;
+    }
     .testimonial-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

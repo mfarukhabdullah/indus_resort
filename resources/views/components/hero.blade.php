@@ -1,7 +1,7 @@
 @php
     $title = $title ?? 'The Story of Indus Resort';
     $subtitle = $subtitle ?? 'Discover the passion and people behind Murree\'s most cherished mountain <br> retreat';
-    $image = $image ?? 'images/about-hero.png';
+    $image = $image ?? 'images/About-Us-banner.webp';
 
     $bgImage = (str_starts_with($image, 'http://') || str_starts_with($image, 'https://')) 
         ? $image 

@@ -50,7 +50,7 @@
     .about-hero {
         position: relative;
         height: 430px;
-        background-image: url('{{ asset("images/about-hero.png") }}');
+        background-image: url('{{ asset("images/About-Us-banner.webp") }}');
         background-size: cover;
         background-position: center;
         display: flex;
@@ -480,7 +480,7 @@
     @include('components.hero', [
         'title' => 'The Story of Indus Resort',
         'subtitle' => 'Discover the passion and people behind Murree\'s most cherished mountain <br> retreat',
-        'image' => 'images/about-hero.png'
+        'image' => 'images/About-Us-banner.webp'
     ])
 
     <!-- Story Section -->
