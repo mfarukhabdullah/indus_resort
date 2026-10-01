@@ -18,7 +18,7 @@
         }
         body {
             background-color: #fcfbf9;
-            color: #333;
+            color: #000000;
         }
         .page-wrapper {
             width: 100%;
@@ -35,50 +35,43 @@
 
         h1, h2, h3, h4 {
             font-family: 'Libre Baskerville', serif;
-            color: #1c2826;
+            color: #000000;
         }
 
         /* --- Hero Section --- */
-        .contact-hero {
+        .about-hero {
             position: relative;
-            width: 100%;
-            height: 350px;
-            background-image: url('/images/hero-image.png');
+            height: 430px;
             background-size: cover;
             background-position: center;
             display: flex;
-            align-items: flex-start;
-            padding-top: 150px;
-            box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px; /* Offset for header */
+            width: 100%;
         }
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
+        .about-hero::before {
+            display: none;
         }
-        .contact-hero-content {
+        .about-hero-content {
             position: relative;
             z-index: 10;
             color: #fff;
-            max-width: 600px;
         }
-        .contact-hero-content h1 {
+        .about-hero-content h1 {
             color: #fff;
             font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 15px;
+            font-family: 'Libre Baskerville', serif;
         }
-        .contact-hero-content p {
-            color: #f0f0f0;
-            font-size: 16px;
-            line-height: 1.6;
+        .about-hero-content p {
+            color: #FFFF;
+            font-size: 18px;
         }
 
         /* --- Main Contact Section --- */
         .contact-main-section {
-            padding: 80px 0;
+            padding-top: 50px;
             background-color: #fff;
         }
         .contact-grid {
@@ -94,7 +87,7 @@
             margin-bottom: 12px;
         }
         .contact-info-wrap > p {
-            color: #666;
+            color: #000000;
             margin-bottom: 40px;
             font-size: 15px;
         }
@@ -104,14 +97,16 @@
             gap: 20px;
         }
         .info-card {
-            background-color: #f7f4ec;
-            border-radius: 12px;
-            padding: 30px 20px;
+            background-color: #FAF6EC;
+            border-radius: 16px;
+            padding: 24px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 1px solid #efeae0;
+            justify-content: center;
+            border: 0.2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.13);
         }
         .info-icon {
             width: 48px;
@@ -127,32 +122,34 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         .info-card h4 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
             font-size: 16px;
             margin-bottom: 8px;
-            color: #1a2823;
+            color: #0E2A1E;
         }
         .info-card p {
-            font-size: 13px;
-            color: #555;
+            font-size: 14px;
+            color: #000000;
             line-height: 1.5;
         }
 
         /* Right Side: Form Card */
         .contact-form-card {
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 50px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-            border: 1px solid #f0f0f0;
+            border: none;
+            border-top: 0.67px solid rgba(24, 48, 37, 0.12);
+            box-shadow: 0px 14px 45px 0px rgba(24, 48, 37, 0.06);
         }
         .contact-form-card h3 {
             font-size: 28px;
             margin-bottom: 12px;
+            color: #133827;
         }
         .contact-form-card p {
-            color: #666;
+            color: #000000;
             font-size: 14px;
             line-height: 1.6;
             margin-bottom: 30px;
@@ -168,9 +165,10 @@
             flex-direction: column;
         }
         .form-group label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a2823;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #000000;
             margin-bottom: 8px;
         }
         .form-group input, .form-group textarea {
@@ -180,7 +178,7 @@
             padding: 14px 16px;
             font-size: 14px;
             font-family: 'Inter', sans-serif;
-            color: #333;
+            color: #000000;
             transition: border-color 0.3s;
         }
         .form-group input:focus, .form-group textarea:focus {
@@ -195,18 +193,19 @@
             background-color: #1F5F41;
             color: #fff;
             border: none;
-            border-radius: 8px;
-            padding: 16px;
-            font-size: 15px;
-            font-weight: 600;
+            border-radius: 12px;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
             cursor: pointer;
-            width: 100%;
+            width: fit-content;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             transition: background-color 0.3s;
-            margin-top: 10px;
+            margin: 20px auto 0;
         }
         .submit-btn:hover {
             background-color: #15452f;
@@ -214,8 +213,9 @@
 
         /* --- Map Section --- */
         .map-section {
-            background-color: #fcfbf9;
-            padding: 60px 0;
+            background-color: #FAF6EC;
+            padding: 40px 0;
+            margin: 50px 0;
         }
         .map-card {
             background: #fff;
@@ -224,6 +224,7 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid #eaeaea;
+            min-height: 420px;
         }
         .map-text-side {
             padding: 60px 50px;
@@ -233,12 +234,16 @@
             justify-content: center;
         }
         .map-text-side h3 {
-            font-size: 26px;
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 38px;
+            color: #183025;
             margin-bottom: 16px;
         }
         .map-text-side p {
             font-size: 14px;
-            color: #555;
+            color: #000000;
             line-height: 1.6;
             margin-bottom: 30px;
         }
@@ -256,21 +261,23 @@
         .map-location-info span {
             font-size: 13px;
             font-weight: 600;
-            color: #1a2823;
+            color: #000000;
             line-height: 1.5;
         }
         .directions-btn {
             background-color: #1F5F41;
             color: #fff;
             text-decoration: none;
-            padding: 14px 24px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 15px;
             font-weight: 600;
             text-align: center;
-            display: inline-block;
+            display: block;
             transition: 0.3s;
-            width: fit-content;
+            width: 85%;
+            max-width: 300px;
+            margin: 15px auto 0;
         }
         .directions-btn:hover {
             background-color: #15452f;
@@ -287,9 +294,10 @@
 
         /* --- Info Bar Section --- */
         .info-bar-section {
-            background-color: #1a2823;
+            background-color: #183025;
             padding: 50px 0;
             color: #fff;
+            margin-bottom: 50px;
         }
         .info-bar-grid {
             display: flex;
@@ -339,30 +347,87 @@
                 grid-template-columns: 1fr;
             }
             .map-card {
-                flex-direction: column;
+                flex-direction: column-reverse;
             }
             .map-img-side {
-                height: 300px;
+                height: 450px;
+                flex: none;
             }
         }
-        @media (max-width: 768px) {
-            .form-row, .info-cards-grid {
-                grid-template-columns: 1fr;
-            }
-            .info-bar-grid {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .info-item:not(:last-child)::after {
-                display: none;
-            }
-            .contact-form-card {
-                padding: 30px 20px;
-            }
-            .contact-hero h1 {
-                font-size: 36px;
-            }
+    @media (max-width: 768px) {
+        .about-hero {
+            height: auto;
+            min-height: 380px;
+            padding-top: 110px;
+            padding-bottom: 45px;
         }
+        .about-hero-content {
+            text-align: center;
+            width: 90%;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+        .about-hero-content h1 {
+            font-size: 32px;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+        .about-hero-content p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .about-hero-content p br {
+            display: none;
+        }
+        .form-row, .info-cards-grid {
+            grid-template-columns: 1fr;
+        }
+        .info-bar-grid {
+            flex-direction: column;
+            gap: 30px;
+        }
+        .info-item:not(:last-child)::after {
+            display: none;
+        }
+        .contact-form-card {
+            padding: 30px 20px;
+        }
+        .map-text-side {
+            padding: 30px 20px;
+        }
+        .map-text-side h3 {
+            font-size: 22px;
+        }
+        .map-text-side h3 br {
+            display: none;
+        }
+        .map-section {
+            background-color: transparent;
+            margin: 20px 0;
+            padding: 0;
+        }
+        .submit-btn, .directions-btn {
+            width: 100%;
+            max-width: none;
+        }
+        .info-bar-section {
+            display: none;
+        }
+        .contact-info-wrap h2, .contact-info-wrap > p {
+            text-align: center;
+        }
+        .contact-form-card h3, .contact-form-card > p {
+            text-align: center;
+        }
+        .form-group textarea {
+            height: 80px;
+        }
+    }
+    @media (max-width: 576px) {
+        .about-hero-content h1 {
+            font-size: 26px;
+        }
+    }
     </style>
 </head>
 <body>
@@ -371,14 +436,11 @@
 <div class="page-wrapper">
     
     <!-- Hero Section -->
-    <section class="contact-hero">
-        <div class="inner-container">
-            <div class="contact-hero-content">
-                <h1>Contact Us</h1>
-                <p>Have a question or ready to book? Reach out and our team will get back to you shortly.</p>
-            </div>
-        </div>
-    </section>
+    @include('components.hero', [
+        'title' => 'Contact Us',
+        'subtitle' => 'Have a question or ready to book? <br> Reach out and our team will get back to you shortly.',
+        'image' => 'images/hero-image.png'
+    ])
 
     <!-- Main Contact Grid -->
     <section class="contact-main-section">
@@ -393,17 +455,17 @@
                     <div class="info-cards-grid">
                         <div class="info-card">
                             <div class="info-icon">
-                                <i class="ri-phone-fill"></i>
-                            </div>
-                            <h4>Phone Number</h4>
-                            <p>0300-0053333</p>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">
                                 <i class="ri-mail-fill"></i>
                             </div>
                             <h4>Email Address</h4>
                             <p>indusresort7861@gmail.com</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="ri-phone-fill"></i>
+                            </div>
+                            <h4>Phone Number</h4>
+                            <p>0300-0053333</p>
                         </div>
                         <div class="info-card">
                             <div class="info-icon">
@@ -469,16 +531,16 @@
         <div class="inner-container">
             <div class="map-card">
                 <div class="map-text-side">
-                    <h3>Indus Resort Murree</h3>
+                    <h3>Indus Resort <br>Murree</h3>
                     <p>Surrounded by the calm of the hills, yet conveniently accessible for families and travelers.</p>
                     <div class="map-location-info">
                         <i class="ri-map-pin-line"></i>
                         <span>Governor House Road, Aliot<br>Bazar, Kohala Road, Murree</span>
                     </div>
-                    <a href="https://maps.google.com" target="_blank" class="directions-btn">Get Directions</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Governor+House+Road,+Aliot+Bazar,+Kohala+Road,+Murree" target="_blank" class="directions-btn">Get Directions</a>
                 </div>
                 <div class="map-img-side">
-                    <img src="{{ asset('images/map.png') }}" alt="Map Location">
+                    <iframe src="https://maps.google.com/maps?q=Indus+Resort,+Governor+House+Road,+Aliot+Bazar,+Kohala+Road,+Murree&t=&z=15&ie=UTF8&output=embed" width="100%" height="100%" style="border:0; min-height: 100%; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
