@@ -47,11 +47,12 @@
     }
     .testimonial-card {
         background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
         padding: 30px;
         border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1.13px solid rgba(255, 255, 255, 0.10);
+        box-shadow: 0 0 0 1.13px rgba(255, 255, 255, 0.10);
     }
     .stars {
         color: #dfb56c;

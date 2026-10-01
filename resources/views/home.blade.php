@@ -78,7 +78,7 @@
     .hero-section {
         position: relative;
         height: 720px;
-        background-image: url('/images/hero-image.png');
+        background-image: url('{{ asset($homeSettings['hero_image']) }}');
         background-size: cover;
         background-position: center;
         display: flex;
@@ -114,7 +114,10 @@
         font-size: 64px;
         line-height: 84.38px;
         letter-spacing: 0px;
-        white-space: nowrap; /* Forces text to stay on one line */
+        white-space: nowrap;
+        height: 84.38px;
+        overflow: hidden;
+        text-overflow: ellipsis;
         color: #fff;
         margin-bottom: 20px;
     }
@@ -126,6 +129,8 @@
         letter-spacing: 0px;
         color: #FFFFFF;
         max-width: 701px;
+        height: 60px;
+        overflow: hidden;
         margin-bottom: 30px;
     }
     .hero-buttons {
@@ -142,7 +147,24 @@
         text-decoration: none;
         box-sizing: border-box;
         padding: 4px;
-        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    .hero-btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        height: calc(100% - 8px);
+        width: 0%;
+        background-color: #1F5F41;
+        border-radius: 8px;
+        transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 1;
+    }
+    .hero-btn-primary:hover::before {
+        width: calc(100% - 8px);
     }
     .hero-btn-primary .icon-box {
         width: 40px;
@@ -153,12 +175,25 @@
         align-items: center;
         justify-content: center;
         margin-right: 15px;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
     }
     .hero-btn-primary span {
         font-family: 'Libre Baskerville', serif;
         font-weight: 700;
         font-size: 18px;
         color: #1F5F41;
+        position: relative;
+        z-index: 2;
+        transition: color 0.3s ease;
+    }
+    .hero-btn-primary:hover span {
+        color: #FFFFFF !important;
+    }
+    .hero-btn-primary:hover {
+        transform: none !important;
+        background-color: #FFFFFF !important;
     }
     .hero-btn-outline {
         display: flex;
@@ -191,7 +226,8 @@
         gap: 16px;
         margin-top: 215px;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        max-width: 100%;
+        min-width: 470px;
+        max-width: 470px;
         color: #fff;
         flex-shrink: 0;
     }
@@ -239,9 +275,17 @@
         font-size: 40px;
         line-height: 54px;
         color: #000000;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
         max-width: 695px;
         text-align: center;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+    }
+    .about-section h2.is-visible {
+        opacity: 1;
+        transform: translateY(0);
     }
     .about-grid {
         display: grid;
@@ -348,11 +392,20 @@
         justify-content: center;
         z-index: 10;
     }
+    @keyframes spinClockwise {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
     .badge-text-svg {
         position: absolute;
         width: 100%;
         height: 100%;
-        transform: rotate(-60.38deg); /* Match rotation from specs */
+        animation: spinClockwise 14s linear infinite;
+        transform-origin: center center;
     }
     .badge-icon {
         position: absolute;
@@ -369,7 +422,7 @@
     }
     .rooms-header {
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
     .rooms-header h2 {
         font-family: 'Libre Baskerville', serif;
@@ -382,7 +435,7 @@
     .rooms-header p {
         font-family: 'Inter', sans-serif;
         font-weight: 400;
-        font-size: 16px;
+        font-size: 19px;
         line-height: 32px;
         color: #000000;
         max-width: 700px;
@@ -505,8 +558,25 @@
         text-decoration: none;
         box-sizing: border-box;
         padding: 4px;
-        transition: all 0.3s ease;
         margin-top: 5px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    .room-btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        height: calc(100% - 8px);
+        width: 0%;
+        background-color: #1F5F41;
+        border-radius: 8px;
+        transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 1;
+    }
+    .room-btn-primary:hover::before {
+        width: calc(100% - 8px);
     }
     .room-btn-primary .icon-box {
         width: 50px;
@@ -516,6 +586,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
     }
     .room-btn-primary span {
         font-family: 'Libre Baskerville', serif;
@@ -524,9 +597,16 @@
         color: #1F5F41;
         margin-left: 15px;
         padding-right: 25px;
+        position: relative;
+        z-index: 2;
+        transition: color 0.3s ease;
+    }
+    .room-btn-primary:hover span {
+        color: #FFFFFF !important;
     }
     .room-btn-primary:hover {
-        background-color: #f2e9d8;
+        transform: none !important;
+        background-color: #FAF6EC !important;
     }
 
     /* Responsive Media Queries */
@@ -697,10 +777,10 @@
         <div class="inner-container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Indus Resort <span class="text-gold">Murree</span></h1>
-                    <p>A luxury mountain retreat where pine-scented air, misty valleys and warm hospitality come together for an unforgettable stay.</p>
+                    <h1>{{ $homeSettings['heading'] }}@if($homeSettings['highlight']) <span class="text-gold">{{ $homeSettings['highlight'] }}</span>@endif</h1>
+                    <p>{{ $homeSettings['description'] }}</p>
                     <div class="hero-buttons">
-                        <a href="#" class="hero-btn-primary">
+                        <a href="https://wa.me/923000053333" target="_blank" class="hero-btn-primary">
                             <div class="icon-box">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -708,16 +788,16 @@
                             </div>
                             <span>Book Your Stay</span>
                         </a>
-                        <a href="#" class="hero-btn-outline">Explore Rooms</a>
+                        <a href="#rooms" class="hero-btn-outline">Explore Rooms</a>
                     </div>
                 </div>
-                <div class="hero-card">
+                <a href="#rooms" class="hero-card" style="text-decoration: none;">
                     <img src="{{ asset('images/bedroom-image.png') }}" alt="Cozy Bedroom">
                     <div>
                         <h3>Book Your Stay Now</h3>
                         <p>Effortlessly manage your stay with our seamless hotel reservations — easy booking</p>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -725,7 +805,7 @@
     <!-- About Section -->
     <section class="about-section">
         <div class="inner-container">
-            <h2>Your Peaceful Escape in the Hills of Murree</h2>
+            <h2 class="about-heading-scroll">Your Peaceful Escape in the Hills of Murree</h2>
             <div class="about-grid">
                 <img src="{{ asset('images/pool-image.jpg') }}" alt="Pool View" class="about-img-left">
                 
@@ -758,9 +838,7 @@
                                 <path id="circlePath" d="M 89.5, 89.5 m -64, 0 a 64,64 0 1,1 128,0 a 64,64 0 1,1 -128,0" />
                             </defs>
                             <text font-family="Inter, sans-serif" font-size="14" font-weight="400" fill="#000000">
-                                <textPath href="#circlePath" textLength="400" lengthAdjust="spacing">
-                                    LEARN MORE ABOUT SAFAR
-                                </textPath>
+                                <textPath href="#circlePath" textLength="402" lengthAdjust="spacing">LEARN MORE ABOUT INDUS&#160;</textPath>
                             </text>
                         </svg>
                         <!-- Center 12-point star -->
@@ -811,7 +889,7 @@
                         </div>
                         <h3>3 Room Portion (Mountain View)</h3>
                         <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
-                        <a href="#" class="room-btn-primary">
+                        <a href="https://wa.me/923000053333" target="_blank" class="room-btn-primary">
                             <div class="icon-box">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -845,7 +923,7 @@
                         </div>
                         <h3>3 Room Portion (Mountain View)</h3>
                         <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
-                        <a href="#" class="room-btn-primary">
+                        <a href="https://wa.me/923000053333" target="_blank" class="room-btn-primary">
                             <div class="icon-box">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -879,7 +957,7 @@
                         </div>
                         <h3>3 Room Portion (Mountain View)</h3>
                         <p>A spacious 3-bedroom portion with a cozy TV lounge and dining area, opening onto a private balcony with breathtaking mountain views.</p>
-                        <a href="#" class="room-btn-primary">
+                        <a href="https://wa.me/923000053333" target="_blank" class="room-btn-primary">
                             <div class="icon-box">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -899,6 +977,35 @@
     <!-- Include CTA Component -->
     @include('cta')
 </div>
+
+<script>
+    (function () {
+        function initAboutAnimation() {
+            const heading = document.querySelector('.about-heading-scroll');
+            if (heading) {
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    root: null,
+                    rootMargin: '0px 0px -50px 0px',
+                    threshold: 0.1
+                });
+                observer.observe(heading);
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAboutAnimation);
+        } else {
+            initAboutAnimation();
+        }
+    })();
+</script>
 
 @include('components.footer')
 
