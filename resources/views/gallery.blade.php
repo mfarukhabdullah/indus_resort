@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Indus Resort Murree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <title>{{ $seo['gallery']['title'] }}</title><meta name="description" content="{{ $seo['gallery']['description'] }}"><meta name="keywords" content="{{ $seo['gallery']['keywords'] }}"><meta name="robots" content="{{ $seo['gallery']['robots'] }}"><link rel="canonical" href="{{ url()->current() }}">
     <meta name="description" content="A glimpse into the rooms, views, and experiences waiting for you at Indus Resort Murree.">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -196,7 +196,7 @@
     @include('components.hero', [
         'title' => '<span class="gallery-badge">GALLERY</span><br>Moments at Indus Resort',
         'subtitle' => 'A glimpse into the rooms, views, and experiences waiting for you in Murree.',
-        'image' => 'images/guest-bg-img.png'
+        'image' => 'images/gallery-hero-v2.png'
     ])
 
     {{-- Intro --}}
@@ -213,6 +213,15 @@
     {{-- Gallery Grid --}}
     <section class="inner-container">
         <div class="gallery-grid" id="galleryGrid">
+
+            @foreach($galleryImages as $index => $image)
+                <div class="gallery-item" data-category="{{ $image['category'] ?? 'all' }}" onclick="openLightbox({{ $index }})">
+                    <img src="{{ asset($image['path']) }}" alt="Indus Resort Gallery" loading="lazy">
+                    <div class="gallery-item-overlay"><i class="ri-zoom-in-line"></i></div>
+                </div>
+            @endforeach
+
+            @if(false)
 
             <div class="gallery-item" data-category="exterior" onclick="openLightbox(0)">
                 <img src="{{ asset('images/mountain-view-one.webp') }}" alt="Indus Resort Exterior" loading="lazy">
@@ -286,6 +295,7 @@
             <div class="gallery-item" data-category="rooms" onclick="openLightbox(17)">
                 <img src="{{ asset('images/suite-five.webp') }}" alt="Suite Five" loading="lazy">
             </div>
+            @endif
 
         </div>
     </section>

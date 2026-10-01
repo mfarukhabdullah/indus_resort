@@ -6,6 +6,8 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ContactSettingsController;
 use App\Http\Controllers\FooterSettingsController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\SeoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +28,7 @@ Route::get('/about', function () {
 
 Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
 
-Route::get('/gallery', function () {
-    return view('gallery');
-})->name('gallery');
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
 
 Route::get('/header', function () {
@@ -40,17 +40,33 @@ Route::post('/contact/messages', [MessageController::class, 'store'])->name('con
 Route::post('/contact', [MessageController::class, 'store'])->name('contact.message.legacy');
 
 Route::get('/admin/login', function () {
+    if (session('admin_authenticated')) {
     $rooms = (new RoomController)->rooms();
     $contact = (new ContactSettingsController)->settings();
     return view('admin.dashboard', ['roomCount' => count($rooms), 'imageCount' => collect($rooms)->sum(function ($room) { return count($room['images'] ?? []); }), 'contactSettings' => $contact]);
+    }
+    return view('admin.login');
 })->name('admin.login');
+Route::post('/admin/login', function (\Illuminate\Http\Request $request) {
+    $data = $request->validate(['email' => ['required','email'], 'password' => ['required','string']]);
+    if ($data['email'] !== 'admin@indusresort.com' || $data['password'] !== 'admin123') return back()->withErrors(['email' => 'Invalid admin email or password.'])->withInput();
+    $request->session()->put('admin_authenticated', true);
+    return redirect()->route('admin.login');
+})->name('admin.login.submit');
+Route::post('/admin/logout', function (\Illuminate\Http\Request $request) { $request->session()->forget('admin_authenticated'); return redirect()->route('admin.login'); })->name('admin.logout');
 
 Route::get('/admin/home-settings', [HomeSettingsController::class, 'edit'])->name('admin.home-settings');
+Route::get('/admin/seo-settings', [SeoController::class, 'edit'])->name('admin.seo-settings');
+Route::post('/admin/seo-settings', [SeoController::class, 'update'])->name('admin.seo-settings.update');
 Route::post('/admin/home-settings', [HomeSettingsController::class, 'update'])->name('admin.home-settings.update');
 Route::get('/admin/contact-settings', [ContactSettingsController::class, 'edit'])->name('admin.contact-settings');
 Route::post('/admin/contact-settings', [ContactSettingsController::class, 'update'])->name('admin.contact-settings.update');
 Route::get('/admin/footer-settings', [FooterSettingsController::class, 'edit'])->name('admin.footer-settings');
 Route::get('/admin/messages', [MessageController::class, 'admin'])->name('admin.messages');
+Route::get('/admin/gallery', [GalleryController::class, 'admin'])->name('admin.gallery');
+Route::post('/admin/gallery', [GalleryController::class, 'store'])->name('admin.gallery.store');
+Route::post('/admin/gallery/{index}/replace', [GalleryController::class, 'replace'])->name('admin.gallery.replace');
+Route::delete('/admin/gallery/{index}', [GalleryController::class, 'destroy'])->name('admin.gallery.destroy');
 Route::delete('/admin/messages/{id}', [MessageController::class, 'destroy'])->name('admin.messages.destroy');
 Route::post('/admin/footer-settings', [FooterSettingsController::class, 'update'])->name('admin.footer-settings.update');
 Route::get('/admin/rooms', [RoomController::class, 'admin'])->name('admin.rooms');

@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rooms & Suites - Indus Resort Murree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <title>{{ $seo['rooms']['title'] }}</title><meta name="description" content="{{ $seo['rooms']['description'] }}"><meta name="keywords" content="{{ $seo['rooms']['keywords'] }}"><meta name="robots" content="{{ $seo['rooms']['robots'] }}"><link rel="canonical" href="{{ url()->current() }}">
     <meta name="description" content="Elegant, comfortable spaces designed to make every moment of your stay memorable.">
     
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">

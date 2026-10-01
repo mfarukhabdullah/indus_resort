@@ -22,7 +22,8 @@
             <a class="active" href="#dashboard"><i class="ri-home-5-line"></i> Dashboard</a>
             <a href="{{ route('admin.home-settings') }}"><i class="ri-settings-3-line"></i> Home Settings</a>
             <a href="{{ route('admin.rooms') }}"><i class="ri-hotel-bed-line"></i> Rooms &amp; Suites</a>
-            <a href="#gallery"><i class="ri-image-line"></i> Gallery</a>
+            <a href="{{ route('admin.gallery') }}"><i class="ri-image-line"></i> Gallery</a>
+            <a href="{{ route('admin.seo-settings') }}"><i class="ri-search-eye-line"></i> SEO Settings</a>
             <a href="{{ route('admin.messages') }}"><i class="ri-message-3-line"></i> Messages</a><a href="{{ route('admin.contact-settings') }}"><i class="ri-mail-line"></i> Contact Us</a>
             <a href="{{ route('admin.footer-settings') }}"><i class="ri-layout-bottom-line"></i> Footer Settings</a>
         </nav>
@@ -33,7 +34,7 @@
         <header class="topbar">
             <button class="menu-toggle" aria-label="Open menu"><i class="ri-menu-line"></i></button>
             <label class="search"><i class="ri-search-line"></i><input type="search" placeholder="Search here..." aria-label="Search"></label>
-            <div class="top-actions"><button class="icon-btn notification" aria-label="Notifications"><i class="ri-notification-3-line"></i></button><div class="user-avatar">AR</div><div class="user"><strong>Admin</strong><span>Super Admin</span></div><i class="ri-arrow-down-s-line"></i></div>
+            <div class="top-actions"><a class="icon-btn notification" aria-label="Messages" href="{{ route('admin.messages') }}"><i class="ri-notification-3-line"></i></a><div class="user-avatar">AR</div><div class="user"><strong>Admin</strong><span>Super Admin</span></div></div>
         </header>
 
         <section class="welcome">
@@ -43,7 +44,7 @@
 
         <section class="stats" aria-label="Website summary">
             <article><div class="stat-icon green"><i class="ri-hotel-bed-line"></i></div><div><small>Total Rooms &amp; Suites</small><b>{{ $roomCount ?? 0 }}</b><a href="{{ route('admin.rooms') }}">Manage Rooms <i class="ri-arrow-right-line"></i></a></div></article>
-            <article><div class="stat-icon gold"><i class="ri-image-line"></i></div><div><small>Gallery Images</small><b>{{ $imageCount ?? 0 }}</b><a href="#gallery">Manage Gallery <i class="ri-arrow-right-line"></i></a></div></article>
+            <article><div class="stat-icon gold"><i class="ri-image-line"></i></div><div><small>Gallery Images</small><b>{{ $imageCount ?? 0 }}</b><a href="{{ route('admin.gallery') }}">Manage Gallery <i class="ri-arrow-right-line"></i></a></div></article>
             <article><div class="stat-icon blue"><i class="ri-file-text-line"></i></div><div><small>Total Pages</small><b>12</b><a href="#home-settings">Manage Home <i class="ri-arrow-right-line"></i></a></div></article>
             <article><div class="stat-icon rose"><i class="ri-mail-line"></i></div><div><small>Contact Submissions</small><b>8</b><a href="#contact">View Messages <i class="ri-arrow-right-line"></i></a></div></article>
         </section>
