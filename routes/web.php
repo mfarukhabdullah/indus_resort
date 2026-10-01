@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeSettingsController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ContactSettingsController;
 use App\Http\Controllers\FooterSettingsController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::get('/header', function () {
 });
 
 Route::get('/contact', [ContactSettingsController::class, 'contact'])->name('contact');
+Route::post('/contact/messages', [MessageController::class, 'store'])->name('contact.message.store');
+Route::post('/contact', [MessageController::class, 'store'])->name('contact.message.legacy');
 
 Route::get('/admin/login', function () {
     $rooms = (new RoomController)->rooms();
@@ -47,6 +50,8 @@ Route::post('/admin/home-settings', [HomeSettingsController::class, 'update'])->
 Route::get('/admin/contact-settings', [ContactSettingsController::class, 'edit'])->name('admin.contact-settings');
 Route::post('/admin/contact-settings', [ContactSettingsController::class, 'update'])->name('admin.contact-settings.update');
 Route::get('/admin/footer-settings', [FooterSettingsController::class, 'edit'])->name('admin.footer-settings');
+Route::get('/admin/messages', [MessageController::class, 'admin'])->name('admin.messages');
+Route::delete('/admin/messages/{id}', [MessageController::class, 'destroy'])->name('admin.messages.destroy');
 Route::post('/admin/footer-settings', [FooterSettingsController::class, 'update'])->name('admin.footer-settings.update');
 Route::get('/admin/rooms', [RoomController::class, 'admin'])->name('admin.rooms');
 Route::post('/admin/rooms', [RoomController::class, 'store'])->name('admin.rooms.store');
