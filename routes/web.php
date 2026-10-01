@@ -8,6 +8,7 @@ use App\Http\Controllers\FooterSettingsController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\AdminPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,11 +50,23 @@ Route::get('/admin/login', function () {
 })->name('admin.login');
 Route::post('/admin/login', function (\Illuminate\Http\Request $request) {
     $data = $request->validate(['email' => ['required','email'], 'password' => ['required','string']]);
-    if ($data['email'] !== 'admin@indusresort.com' || $data['password'] !== 'admin123') return back()->withErrors(['email' => 'Invalid admin email or password.'])->withInput();
+    $auth = new AdminPasswordController();
+    $creds = $auth->getCredentials();
+    
+    $emailMatches = strtolower(trim($data['email'])) === strtolower(trim($creds['email']));
+    $stored = $creds['password'] ?? '';
+    $passwordMatches = \Illuminate\Support\Facades\Hash::check($data['password'], $stored) || ($data['password'] === $stored);
+    
+    if (!$emailMatches || !$passwordMatches) {
+        return back()->withErrors(['email' => 'Invalid admin email or password.'])->withInput();
+    }
     $request->session()->put('admin_authenticated', true);
     return redirect()->route('admin.login');
 })->name('admin.login.submit');
 Route::post('/admin/logout', function (\Illuminate\Http\Request $request) { $request->session()->forget('admin_authenticated'); return redirect()->route('admin.login'); })->name('admin.logout');
+
+Route::get('/admin/change-password', [AdminPasswordController::class, 'edit'])->name('admin.change-password');
+Route::post('/admin/change-password', [AdminPasswordController::class, 'update'])->name('admin.change-password.update');
 
 Route::get('/admin/home-settings', [HomeSettingsController::class, 'edit'])->name('admin.home-settings');
 Route::get('/admin/seo-settings', [SeoController::class, 'edit'])->name('admin.seo-settings');
