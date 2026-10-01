@@ -494,7 +494,7 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
+                    <a href="https://wa.me/923352015555?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
                     </a>
@@ -530,7 +530,7 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
+                    <a href="https://wa.me/923352015555?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
                     </a>
@@ -565,7 +565,7 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
+                    <a href="https://wa.me/923352015555?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
                     </a>
@@ -578,7 +578,7 @@
                         <img src="{{ asset($room['images'][0] ?? 'images/bed-image.jpg') }}" alt="{{ $room['title'] }}">
                         @if(count($room['images']) > 1)<div class="slider-dots">@foreach($room['images'] as $index => $image)<div class="dot {{ $index === 0 ? 'active' : '' }}" onclick="changeSlide(this, {{ $index }})"></div>@endforeach</div>@endif
                     </div>
-                    <div class="room-info"><h3>{{ $room['title'] }}</h3><p>{{ $room['description'] }}</p><div class="room-price">PKR {{ $room['price'] }} / Night</div><div class="room-stats">@if(!empty($room['rating']))<div class="stat-badge"><i class="ri-star-fill"></i> {{ $room['rating'] }}</div>@endif<div class="stat-badge"><i class="ri-hotel-bed-line"></i> {{ $room['bedrooms'] }} Bedrooms</div>@if(!empty($room['persons']))<div class="stat-badge"><i class="ri-group-line"></i> {{ $room['persons'] }} Persons</div>@endif @if(($room['kitchen'] ?? 'no') === 'yes')<div class="stat-badge"><i class="ri-restaurant-line"></i> Kitchen Available</div>@else <div class="stat-badge" style="color:#e53e3e"><i class="ri-close-line"></i> No Kitchen</div>@endif</div><div class="room-amenities">@foreach($room['features'] as $feature)@if(!in_array(strtolower(trim($feature)), ['kitchen','kitchen available','no kitchen']))<div class="amenity-item"><i class="ri-check-line"></i> {{ $feature }}</div>@endif @endforeach</div><a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve"><div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div><span class="btn-reserve-text">Reserve This Room</span></a></div>
+                    <div class="room-info"><h3>{{ $room['title'] }}</h3><p>{{ $room['description'] }}</p><div class="room-price">PKR {{ $room['price'] }} / Night</div><div class="room-stats">@if(!empty($room['rating']))<div class="stat-badge"><i class="ri-star-fill"></i> {{ $room['rating'] }}</div>@endif<div class="stat-badge"><i class="ri-hotel-bed-line"></i> {{ $room['bedrooms'] }} Bedrooms</div>@if(!empty($room['persons']))<div class="stat-badge"><i class="ri-group-line"></i> {{ $room['persons'] }} Persons</div>@endif @if(($room['kitchen'] ?? 'no') === 'yes')<div class="stat-badge"><i class="ri-restaurant-line"></i> Kitchen Available</div>@else <div class="stat-badge" style="color:#e53e3e"><i class="ri-close-line"></i> No Kitchen</div>@endif</div><div class="room-amenities">@foreach($room['features'] as $feature)@if(!in_array(strtolower(trim($feature)), ['kitchen','kitchen available','no kitchen']))<div class="amenity-item"><i class="ri-check-line"></i> {{ $feature }}</div>@endif @endforeach</div><a href="https://wa.me/923352015555?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve"><div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div><span class="btn-reserve-text">Reserve This Room</span></a></div>
                 </div>
             @endforeach
         </div>

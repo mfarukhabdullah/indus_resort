@@ -23,7 +23,7 @@
             </nav>
 
             <!-- Book Now Button (Exact Dimension: 198px x 60px) -->
-            <a href="https://wa.me/923000053333" target="_blank" class="header-book-btn">
+            <a href="https://wa.me/923352015555" target="_blank" class="header-book-btn">
                 <div class="book-btn-icon-box">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4.5 2.5L8 6L4.5 9.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,7 +79,7 @@
                     <a href="{{ url('/contact') }}" class="mobile-menu-link {{ request()->is('contact*') ? 'active' : '' }}">Contact Us</a>
                 </li>
             </ul>
-            <a href="https://wa.me/923000053333" target="_blank" class="mobile-book-btn" onclick="toggleMobileNav();">
+            <a href="https://wa.me/923352015555" target="_blank" class="mobile-book-btn" onclick="toggleMobileNav();">
                 Book Now
             </a>
         </div>

@@ -140,7 +140,7 @@ class FooterSettingsController extends Controller
             'agoda'          => '',
             'instagram'      => 'https://instagram.com',
             'facebook'       => 'https://facebook.com',
-            'whatsapp'       => 'https://wa.me/923000053333',
+            'whatsapp'       => 'https://wa.me/923352015555',
             'youtube'        => '',
             'tiktok'         => '',
             'twitter'        => '',

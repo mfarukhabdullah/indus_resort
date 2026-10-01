@@ -272,7 +272,7 @@
                 <div class="cta-lines"></div>
                 <div class="cta-text-btn">
                     <p>Reserve your room today and experience the beauty of Murree at Indus Resort.</p>
-                    <a href="https://wa.me/923000053333" target="_blank" class="cta-book-btn">
+                    <a href="https://wa.me/923352015555" target="_blank" class="cta-book-btn">
                         <div class="cta-btn-icon">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

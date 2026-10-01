@@ -939,7 +939,7 @@
                     <h1>{{ $homeSettings['heading'] }}@if($homeSettings['highlight']) <span class="text-gold">{{ $homeSettings['highlight'] }}</span>@endif</h1>
                     <p>{{ $homeSettings['description'] }}</p>
                     <div class="hero-buttons">
-                        <a href="https://wa.me/923000053333" target="_blank" class="hero-btn-primary">
+                        <a href="https://wa.me/923352015555" target="_blank" class="hero-btn-primary">
                             <div class="icon-box">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1054,7 +1054,7 @@
                         </div>
                         <h3>{{ $room['title'] }}</h3>
                         <p>{{ $room['description'] }}</p>
-                        <a href="https://wa.me/923000053333" target="_blank" class="room-btn-primary">
+                        <a href="https://wa.me/923352015555" target="_blank" class="room-btn-primary">
                             <div class="icon-box">
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 2L10 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

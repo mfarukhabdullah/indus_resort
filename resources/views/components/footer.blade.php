@@ -111,7 +111,7 @@
 
 <!-- Floating WhatsApp Button -->
 <div class="whatsapp-container">
-    <a href="https://wa.me/923000053333" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/923352015555" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
         <i class="ri-whatsapp-line"></i>
     </a>
 </div>
