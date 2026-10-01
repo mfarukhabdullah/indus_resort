@@ -40,6 +40,34 @@ Route::get('/contact', [ContactSettingsController::class, 'contact'])->name('con
 Route::post('/contact/messages', [MessageController::class, 'store'])->name('contact.message.store');
 Route::post('/contact', [MessageController::class, 'store'])->name('contact.message.legacy');
 
+Route::get('/sitemap.xml', function (\Illuminate\Http\Request $request) {
+    $baseUrl = $request->getSchemeAndHttpHost();
+    $pages = [
+        ['path' => '/', 'priority' => '1.0', 'changefreq' => 'weekly'],
+        ['path' => '/about', 'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['path' => '/rooms', 'priority' => '0.9', 'changefreq' => 'weekly'],
+        ['path' => '/gallery', 'priority' => '0.7', 'changefreq' => 'weekly'],
+        ['path' => '/contact', 'priority' => '0.7', 'changefreq' => 'monthly'],
+    ];
+
+    $lastModified = now()->toDateString();
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+    foreach ($pages as $page) {
+        $xml .= "  <url>\n";
+        $xml .= '    <loc>' . e($baseUrl . $page['path']) . "</loc>\n";
+        $xml .= '    <lastmod>' . $lastModified . "</lastmod>\n";
+        $xml .= '    <changefreq>' . $page['changefreq'] . "</changefreq>\n";
+        $xml .= '    <priority>' . $page['priority'] . "</priority>\n";
+        $xml .= "  </url>\n";
+    }
+
+    $xml .= '</urlset>';
+
+    return response($xml, 200, ['Content-Type' => 'application/xml; charset=UTF-8']);
+})->name('sitemap');
+
 Route::get('/admin/login', function () {
     if (session('admin_authenticated')) {
         $rooms = (new RoomController)->rooms();
