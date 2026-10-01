@@ -452,7 +452,7 @@
     @include('components.hero', [
         'title' => 'Rooms & Suites',
         'subtitle' => 'Elegant, comfortable spaces designed to make every moment of your stay <br> memorable.',
-        'image' => 'images/hero-image.png'
+        'image' => 'images/room-banner.webp'
     ])
 
     <section class="rooms-intro">
