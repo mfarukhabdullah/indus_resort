@@ -122,25 +122,32 @@
         object-fit: cover;
         object-position: center;
         display: block;
-        transition: opacity 0.2s ease-in-out;
     }
     .slider-dots {
         position: absolute;
-        bottom: 20px;
+        bottom: 15px;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 8px;
+        gap: 12px;
+        z-index: 10;
+        padding: 5px;
     }
     .dot {
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
         background: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
         cursor: pointer;
+        position: relative;
+    }
+    .dot::after {
+        content: '';
+        position: absolute;
+        top: -10px; left: -10px; right: -10px; bottom: -10px;
     }
     .dot.active {
-        background: #fff;
+        background: #C9A84C;
         width: 20px;
         border-radius: 4px;
     }
@@ -321,13 +328,16 @@
         .room-card {
             flex-direction: column !important;
             height: auto;
+            padding: 12px;
         }
         .room-image-slider {
             max-width: 100%;
-            height: 300px;
+            height: 246px;
+            border-radius: 12px;
+            overflow: hidden;
         }
         .room-info {
-            padding: 30px;
+            padding: 20px 8px 10px 8px;
         }
     }
     @media (max-width: 768px) {
@@ -354,14 +364,55 @@
             display: none;
         }
         .rooms-intro h2 {
-            font-size: 28px;
+            font-size: 24px;
+            line-height: 1.3;
+        }
+        .stay-policies h2 {
+            font-size: 24px;
+            line-height: 1.3;
         }
         .policies-grid {
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 15px;
+        }
+        .policy-card {
+            padding: 25px 20px;
+            border: 0.5px solid rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+        }
+        .room-image-slider {
+            flex: none;
+            width: 100%;
+            height: 246px !important;
+            min-height: 246px;
+        }
+        .room-info h3 {
+            font-size: 22px;
+        }
+        .room-info > p {
+            font-size: 14px;
+            line-height: 22px;
         }
         .room-amenities {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .btn-reserve {
+            width: 100%;
+            justify-content: center;
+            background-color: #133827;
+            color: #fff;
+            padding: 12px;
+        }
+        .btn-reserve-icon {
+            background-color: transparent;
+            color: #fff;
+            width: auto;
+            height: auto;
+        }
+        .btn-reserve:hover {
+            background-color: #0e2a1d;
+            color: #fff;
         }
     }
 </style>
@@ -417,9 +468,9 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="#" class="btn-reserve">
-                        Reserve This Room
+                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
+                        Reserve This Room
                     </a>
                 </div>
             </div>
@@ -453,9 +504,9 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="#" class="btn-reserve">
-                        Reserve This Room
+                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
+                        Reserve This Room
                     </a>
                 </div>
             </div>
@@ -488,9 +539,9 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="#" class="btn-reserve">
-                        Reserve This Room
+                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
+                        Reserve This Room
                     </a>
                 </div>
             </div>
@@ -501,7 +552,7 @@
                         <img src="{{ asset($room['images'][0] ?? 'images/bed-image.jpg') }}" alt="{{ $room['title'] }}">
                         @if(count($room['images']) > 1)<div class="slider-dots">@foreach($room['images'] as $index => $image)<div class="dot {{ $index === 0 ? 'active' : '' }}" onclick="changeSlide(this, {{ $index }})"></div>@endforeach</div>@endif
                     </div>
-                    <div class="room-info"><h3>{{ $room['title'] }}</h3><p>{{ $room['description'] }}</p><div class="room-price">PKR {{ $room['price'] }} / Night</div><div class="room-stats">@if(!empty($room['rating']))<div class="stat-badge"><i class="ri-star-fill"></i> {{ $room['rating'] }}</div>@endif<div class="stat-badge"><i class="ri-hotel-bed-line"></i> {{ $room['bedrooms'] }} Bedrooms</div>@if(!empty($room['persons']))<div class="stat-badge"><i class="ri-group-line"></i> {{ $room['persons'] }} Persons</div>@endif @if(($room['kitchen'] ?? 'no') === 'yes')<div class="stat-badge"><i class="ri-restaurant-line"></i> Kitchen Available</div>@else <div class="stat-badge" style="color:#e53e3e"><i class="ri-close-line"></i> No Kitchen</div>@endif</div><div class="room-amenities">@foreach($room['features'] as $feature)@if(!in_array(strtolower(trim($feature)), ['kitchen','kitchen available','no kitchen']))<div class="amenity-item"><i class="ri-check-line"></i> {{ $feature }}</div>@endif @endforeach</div><a href="#" class="btn-reserve"><div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>Reserve This Room</a></div>
+                    <div class="room-info"><h3>{{ $room['title'] }}</h3><p>{{ $room['description'] }}</p><div class="room-price">PKR {{ $room['price'] }} / Night</div><div class="room-stats">@if(!empty($room['rating']))<div class="stat-badge"><i class="ri-star-fill"></i> {{ $room['rating'] }}</div>@endif<div class="stat-badge"><i class="ri-hotel-bed-line"></i> {{ $room['bedrooms'] }} Bedrooms</div>@if(!empty($room['persons']))<div class="stat-badge"><i class="ri-group-line"></i> {{ $room['persons'] }} Persons</div>@endif @if(($room['kitchen'] ?? 'no') === 'yes')<div class="stat-badge"><i class="ri-restaurant-line"></i> Kitchen Available</div>@else <div class="stat-badge" style="color:#e53e3e"><i class="ri-close-line"></i> No Kitchen</div>@endif</div><div class="room-amenities">@foreach($room['features'] as $feature)@if(!in_array(strtolower(trim($feature)), ['kitchen','kitchen available','no kitchen']))<div class="amenity-item"><i class="ri-check-line"></i> {{ $feature }}</div>@endif @endforeach</div><a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve"><div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>Reserve This Room</a></div>
                 </div>
             @endforeach
         </div>
@@ -544,29 +595,38 @@
 
 <script>
     function changeSlide(dotElement, index) {
-        // Find the parent slider container
         const slider = dotElement.closest('.room-image-slider');
-        
-        // Get the images array from data attribute
-        const imagesData = slider.getAttribute('data-images');
-        const images = imagesData.split(',');
-        
-        // Change the image source
+        const images = slider.getAttribute('data-images').split(',');
         const imgElement = slider.querySelector('img');
+
         if (images[index]) {
-            // Add a simple fade effect
-            imgElement.style.opacity = '0.7';
-            setTimeout(() => {
-                imgElement.src = images[index];
-                imgElement.style.opacity = '1';
-            }, 150);
+            imgElement.src = images[index].trim();
         }
-        
-        // Update active dot
+
         const dots = slider.querySelectorAll('.dot');
-        dots.forEach(dot => dot.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
         dotElement.classList.add('active');
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Automatically remove # from URL if it exists
+        if (window.location.hash) {
+            history.replaceState(null, null, window.location.href.split('#')[0]);
+        }
+
+        const sliders = document.querySelectorAll('.room-image-slider');
+        
+        sliders.forEach(slider => {
+            const dots = slider.querySelectorAll('.dot');
+            if (dots.length > 1) {
+                let currentIndex = 0;
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % dots.length;
+                    changeSlide(dots[currentIndex], currentIndex);
+                }, 3000); // 3 seconds interval
+            }
+        });
+    });
 </script>
 
 </body>
