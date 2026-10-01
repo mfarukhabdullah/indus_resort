@@ -196,7 +196,7 @@
     @include('components.hero', [
         'title' => '<span class="gallery-badge">GALLERY</span><br>Moments at Indus Resort',
         'subtitle' => 'A glimpse into the rooms, views, and experiences waiting for you in Murree.',
-        'image' => 'images/gallery-hero-v2.png'
+        'image' => 'images/Gallery-View-Banner.webp'
     ])
 
     {{-- Intro --}}
