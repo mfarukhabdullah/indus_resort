@@ -150,22 +150,30 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: absolute;
+        left: 8px;
+        top: 8px;
         flex-shrink: 0;
-        position: relative;
         z-index: 2;
+        transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .cta-book-btn:hover .cta-btn-icon {
+        left: calc(100% - 52px);
     }
     .cta-book-btn span {
         flex: 1;
         text-align: center;
+        margin-left: 44px;
         margin-right: 44px;
         color: #1F5F41;
         font-family: 'Libre Baskerville', 'Playfair Display', serif;
         position: relative;
         z-index: 2;
-        transition: color 0.3s ease;
+        transition: color 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .cta-book-btn:hover span {
         color: #FFFFFF !important;
+        transform: translateX(-22px);
     }
 
     /* Responsive Media Queries */
@@ -233,9 +241,12 @@
             display: none !important;
             width: 0 !important;
         }
-        .cta-btn-icon {
+        .cta-btn-icon,
+        .cta-book-btn:hover .cta-btn-icon {
             position: absolute !important;
             left: 20px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
             background-color: transparent !important;
             width: auto !important;
             height: auto !important;
@@ -245,7 +256,9 @@
         .cta-book-btn:focus span,
         .cta-book-btn:active span {
             color: #FFFFFF !important;
+            margin-left: 0 !important;
             margin-right: 0 !important;
+            transform: none !important;
         }
     }
 </style>

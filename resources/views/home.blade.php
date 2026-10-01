@@ -174,10 +174,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 15px;
+        position: absolute;
+        left: 4px;
+        top: 4px;
         flex-shrink: 0;
-        position: relative;
         z-index: 2;
+        transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .hero-btn-primary:hover .icon-box {
+        left: calc(100% - 44px);
     }
     .hero-btn-primary span {
         font-family: 'Libre Baskerville', serif;
@@ -186,10 +191,12 @@
         color: #1F5F41;
         position: relative;
         z-index: 2;
-        transition: color 0.3s ease;
+        margin-left: 54px;
+        transition: color 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .hero-btn-primary:hover span {
         color: #FFFFFF !important;
+        transform: translateX(-40px);
     }
     .hero-btn-primary:hover {
         transform: none !important;
@@ -615,29 +622,35 @@
     }
     .room-btn-primary .icon-box {
         width: 50px;
-        height: 42px;
+        height: 44px;
         background-color: #1F5F41;
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: absolute;
+        left: 4px;
+        top: 4px;
         flex-shrink: 0;
-        position: relative;
         z-index: 2;
+        transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .room-btn-primary:hover .icon-box {
+        left: calc(100% - 54px);
     }
     .room-btn-primary span {
         font-family: 'Libre Baskerville', serif;
         font-size: 16px;
         font-weight: 600;
         color: #1F5F41;
-        margin-left: 15px;
-        padding-right: 25px;
+        margin-left: 62px;
         position: relative;
         z-index: 2;
-        transition: color 0.3s ease;
+        transition: color 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .room-btn-primary:hover span {
         color: #FFFFFF !important;
+        transform: translateX(-45px);
     }
     .room-btn-primary:hover {
         transform: none !important;
@@ -791,24 +804,32 @@
             justify-content: center;
         }
         .hero-btn-primary {
-            background-color: #1F5F41;
-            position: relative;
-            padding: 0;
+            background-color: #1F5F41 !important;
+            position: relative !important;
+            padding: 0 !important;
         }
-        .hero-btn-primary .icon-box {
-            position: absolute;
-            left: 20px;
-            background-color: transparent;
-            width: auto;
-            height: auto;
-            margin-right: 0;
+        .hero-btn-primary .icon-box,
+        .hero-btn-primary:hover .icon-box {
+            position: absolute !important;
+            left: 20px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            background-color: transparent !important;
+            width: auto !important;
+            height: auto !important;
+            margin-right: 0 !important;
         }
-        .hero-btn-primary span {
-            color: #FFFFFF;
+        .hero-btn-primary span,
+        .hero-btn-primary:hover span {
+            color: #FFFFFF !important;
+            margin-left: 0 !important;
+            transform: none !important;
         }
-        .hero-btn-outline {
-            background-color: #FFFFFF;
-            color: #1F5F41;
+        .hero-btn-outline,
+        .hero-btn-outline:hover {
+            background-color: #FFFFFF !important;
+            color: #1F5F41 !important;
+            transform: none !important;
         }
         .hero-text h1 {
             font-size: 2.2rem;
@@ -875,26 +896,33 @@
         .room-img {
             height: 260px;
         }
-        .room-btn-primary {
-            background-color: #1F5F41;
-            position: relative;
-            padding: 0;
-            justify-content: center;
-            width: 320px;
-            max-width: 100%;
-            margin: 0 auto;
+        .room-btn-primary,
+        .room-btn-primary:hover {
+            background-color: #1F5F41 !important;
+            position: relative !important;
+            padding: 0 !important;
+            justify-content: center !important;
+            width: 320px !important;
+            max-width: 100% !important;
+            margin: 0 auto !important;
+            transform: none !important;
         }
-        .room-btn-primary .icon-box {
-            position: absolute;
-            left: 20px;
-            background-color: transparent;
-            width: auto;
-            height: auto;
+        .room-btn-primary .icon-box,
+        .room-btn-primary:hover .icon-box {
+            position: absolute !important;
+            left: 20px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            background-color: transparent !important;
+            width: auto !important;
+            height: auto !important;
         }
-        .room-btn-primary span {
-            color: #FFFFFF;
-            margin-left: 0;
-            padding-right: 0;
+        .room-btn-primary span,
+        .room-btn-primary:hover span {
+            color: #FFFFFF !important;
+            margin-left: 0 !important;
+            padding-right: 0 !important;
+            transform: none !important;
         }
     }
 </style>

@@ -213,8 +213,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 9px;
-    gap: 12px;
+    padding: 0 4px;
     text-decoration: none;
     flex-shrink: 0;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
@@ -254,12 +253,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    left: 4px;
+    top: 4px;
     flex-shrink: 0;
-    position: relative;
     z-index: 2;
+    transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .header-book-btn:hover .book-btn-icon-box {
+    left: calc(100% - 44px);
     background-color: #1F5F41 !important;
 }
 
@@ -274,11 +277,13 @@ body {
     white-space: nowrap;
     position: relative;
     z-index: 2;
-    transition: color 0.3s ease;
+    margin-left: 54px;
+    transition: color 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .header-book-btn:hover .book-btn-text {
     color: #ffffff !important;
+    transform: translateX(-40px);
 }
 
 /* Mobile Hamburger Toggle */
