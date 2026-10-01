@@ -16,17 +16,17 @@
                     </a>
 
                     <p class="footer-brand-desc">
-                        A serene mountain escape offering panoramic views, elegant rooms and warm Pakistani hospitality in the heart of Murree.
+                        {{ $footerSettings['description'] }}
                     </p>
 
                     <div class="footer-social-links">
-                        <a href="https://instagram.com" target="_blank" class="social-icon-btn" aria-label="Instagram">
+                        <a href="{{ $footerSettings['instagram'] ?: '#' }}" target="_blank" class="social-icon-btn" aria-label="Instagram">
                             <i class="ri-instagram-line"></i>
                         </a>
-                        <a href="https://facebook.com" target="_blank" class="social-icon-btn" aria-label="Facebook">
+                        <a href="{{ $footerSettings['facebook'] ?: '#' }}" target="_blank" class="social-icon-btn" aria-label="Facebook">
                             <i class="ri-facebook-fill"></i>
                         </a>
-                        <a href="https://wa.me/923000053333" target="_blank" class="social-icon-btn" aria-label="WhatsApp">
+                        <a href="{{ $footerSettings['whatsapp'] ?: '#' }}" target="_blank" class="social-icon-btn" aria-label="WhatsApp">
                             <i class="ri-whatsapp-line"></i>
                         </a>
                     </div>
@@ -36,11 +36,10 @@
                 <div class="footer-col-quicklinks">
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul class="footer-nav-list">
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('/about') }}">About</a></li>
-                        <li><a href="{{ url('/#rooms') }}">Rooms & Suites</a></li>
-                        <li><a href="{{ url('/#gallery') }}">Gallery</a></li>
-                        <li><a href="{{ url('/#contact') }}">Contact Us</a></li>
+                        @php($footerLinks = ['home' => ['Home', url('/')], 'about' => ['About', url('/about')], 'rooms' => ['Rooms & Suites', url('/rooms')], 'gallery' => ['Gallery', url('/#gallery')], 'contact' => ['Contact Us', url('/contact')]])
+                        @foreach($footerSettings['quick_links'] as $key)
+                            @if(isset($footerLinks[$key]))<li><a href="{{ $footerLinks[$key][1] }}">{{ $footerLinks[$key][0] }}</a></li>@endif
+                        @endforeach
                     </ul>
                 </div>
 
@@ -50,15 +49,15 @@
                     <ul class="footer-contact-list">
                         <li class="contact-item">
                             <i class="ri-map-pin-line contact-icon"></i>
-                            <span>Governor House Road, Aliot Bazar, Kohala Road, Murree</span>
+                            <span>{{ $contactSettings['location'] }}</span>
                         </li>
                         <li class="contact-item">
                             <i class="ri-phone-line contact-icon"></i>
-                            <a href="tel:03000053333">0300-0053333</a>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $contactSettings['phone']) }}">{{ $contactSettings['phone'] }}</a>
                         </li>
                         <li class="contact-item">
                             <i class="ri-mail-line contact-icon"></i>
-                            <a href="mailto:indusresort7861@gmail.com">indusresort7861@gmail.com</a>
+                            <a href="mailto:{{ $contactSettings['email'] }}">{{ $contactSettings['email'] }}</a>
                         </li>
                     </ul>
                 </div>

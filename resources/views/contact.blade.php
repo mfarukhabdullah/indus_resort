@@ -439,7 +439,7 @@
     @include('components.hero', [
         'title' => 'Contact Us',
         'subtitle' => 'Have a question or ready to book? <br> Reach out and our team will get back to you shortly.',
-        'image' => 'images/hero-image.png'
+        'image' => 'images/contact-us-banner.webp'
     ])
 
     <!-- Main Contact Grid -->
@@ -458,28 +458,28 @@
                                 <i class="ri-mail-fill"></i>
                             </div>
                             <h4>Email Address</h4>
-                            <p>indusresort7861@gmail.com</p>
+                            <p>{{ $contactSettings['email'] }}</p>
                         </div>
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="ri-phone-fill"></i>
                             </div>
                             <h4>Phone Number</h4>
-                            <p>0300-0053333</p>
+                            <p>{{ $contactSettings['phone'] }}</p>
                         </div>
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="ri-map-pin-2-fill"></i>
                             </div>
                             <h4>Our Location</h4>
-                            <p>Governor House Road, Aliot<br>Bazar, Kohala Road, Murree</p>
+                            <p>{!! nl2br(e($contactSettings['location'])) !!}</p>
                         </div>
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="ri-time-fill"></i>
                             </div>
                             <h4>Reception Hours</h4>
-                            <p>Open 24 hours<br>Every day of the week</p>
+                            <p>{!! nl2br(e($contactSettings['hours'])) !!}</p>
                         </div>
                     </div>
                 </div>
@@ -489,31 +489,34 @@
                     <div class="contact-form-card">
                         <h3>Plan Your Stay With Us</h3>
                         <p>Tell us how we can help and our team will get back to you as soon as possible.</p>
+                        @if(session('success'))<div style="background:#eaf6ef;color:#126a4b;border:1px solid #b7ddc9;border-radius:8px;padding:12px;margin:16px 0;font-weight:600">{{ session('success') }}</div>@endif
+                        @if($errors->any())<div style="background:#fff1f1;color:#a42531;border:1px solid #f0b7b7;border-radius:8px;padding:12px;margin:16px 0"><ul style="margin:0;padding-left:18px">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
                         
-                        <form action="#" method="POST">
+                        <form action="{{ route('contact.message.store') }}" method="POST">
+                            @csrf
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Full Name</label>
-                                    <input type="text" placeholder="Enter your name">
+                                    <input type="text" name="name" pattern="[A-Za-zÀ-ž .'-]+" title="Name mein sirf letters aur spaces allowed hain" placeholder="Enter your name" value="{{ old('name') }}" oninput="this.value=this.value.replace(/[0-9]/g,'')" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input type="text" placeholder="+92 300 0000000">
+                                    <input type="tel" name="phone" inputmode="tel" pattern="[0-9+()\- ]+" title="Phone mein sirf numbers allowed hain" placeholder="+92 300 0000000" value="{{ old('phone') }}" oninput="this.value=this.value.replace(/[^0-9+()\- ]/g,'')" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input type="email" placeholder="you@example.com">
+                                    <input type="email" name="email" placeholder="you@example.com" value="{{ old('email') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Subject</label>
-                                    <input type="text" placeholder="Room booking inquiry">
+                                    <input type="text" name="subject" placeholder="Room booking inquiry" required>
                                 </div>
                             </div>
                             <div class="form-group" style="margin-bottom: 20px;">
                                 <label>Message</label>
-                                <textarea placeholder="Tell us about your stay, dates or any questions..."></textarea>
+                                <textarea name="message" placeholder="Tell us about your stay, dates or any questions..." required></textarea>
                             </div>
                             <button type="submit" class="submit-btn">
                                 Send Your Message <i class="ri-send-plane-line"></i>

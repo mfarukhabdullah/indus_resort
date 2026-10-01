@@ -96,14 +96,14 @@
 
     /* Room Cards */
     .rooms-list {
-        padding-bottom: 60px;
+        padding-bottom: 0;
     }
     .room-card {
         display: flex;
         background: #FAF6EC;
         border-radius: 20px;
         overflow: hidden;
-        margin-bottom: 40px;
+        margin-bottom: 15px;
         flex-direction: row;
         align-items: stretch;
         height: 450px;
@@ -257,16 +257,19 @@
 
     /* Policies Section */
     .stay-policies {
-        padding: 40px 0 80px 0;
+        padding: 0 0 30px 0;
         text-align: center;
     }
     .stay-policies h2 {
+        font-family: 'Libre Baskerville', serif;
         font-size: 32px;
-        margin-bottom: 10px;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 8px;
     }
-    .stay-policies > p {
-        margin-bottom: 40px;
-        color: #555;
+    .stay-policies .inner-container > p {
+        margin-bottom: 30px;
+        color: #000;
     }
     .policies-grid {
         display: grid;
@@ -275,10 +278,16 @@
     }
     .policy-card {
         background: #fff;
-        border: 1px solid #eee;
-        border-radius: 16px;
-        padding: 30px 20px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        border: 0.5px solid rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        padding: 40px 20px;
+        box-shadow: 0 0 14px rgba(0, 0, 0, 0.13);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .policy-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
     }
     .policy-icon {
         width: 50px;
@@ -295,12 +304,16 @@
         color: #133827;
     }
     .policy-card h4 {
-        font-size: 18px;
-        margin-bottom: 10px;
+        font-family: 'Libre Baskerville', serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 12px;
     }
     .policy-card p {
-        font-size: 14px;
-        color: #555;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        color: #444;
     }
 
     /* Responsive */
@@ -374,7 +387,8 @@
 
     <section class="rooms-list">
         <div class="inner-container">
-            <!-- Room 1 -->
+            @if(false)
+            <!-- Original room samples kept for layout reference -->
             <div class="room-card">
                 <div class="room-image-slider" data-images="{{ asset('images/mountain-view-one.webp') }},{{ asset('images/mountain-view-two.webp') }},{{ asset('images/mountain-view-five.webp') }},{{ asset('images/mountain-view-six.webp') }},{{ asset('images/bedroom-balcony-Cradtk-four.webp') }}">
                     <img src="{{ asset('images/mountain-view-one.webp') }}" alt="3 Room Portion">
@@ -404,8 +418,8 @@
                     </div>
 
                     <a href="#" class="btn-reserve">
-                        <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
+                        <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                     </a>
                 </div>
             </div>
@@ -428,6 +442,7 @@
                     <div class="room-price">PKR 35,000 / Night</div>
                     
                     <div class="room-stats">
+                        <div class="stat-badge"><i class="ri-star-fill"></i> 5.0</div>
                         <div class="stat-badge"><i class="ri-hotel-bed-line"></i> 3 Bedrooms</div>
                         <div class="stat-badge" style="color: #e53e3e;"><i class="ri-close-line" style="background-color: transparent; color: #e53e3e; font-size: 18px; width: auto; height: auto;"></i> No Kitchen</div>
                     </div>
@@ -439,8 +454,8 @@
                     </div>
 
                     <a href="#" class="btn-reserve">
-                        <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
+                        <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                     </a>
                 </div>
             </div>
@@ -462,6 +477,7 @@
                     <div class="room-price">PKR 35,000 / Night</div>
                     
                     <div class="room-stats">
+                        <div class="stat-badge"><i class="ri-star-fill"></i> 5.0</div>
                         <div class="stat-badge"><i class="ri-hotel-bed-line"></i> 2 Bedrooms</div>
                         <div class="stat-badge"><i class="ri-cup-hot-line"></i> Kitchen Available</div>
                     </div>
@@ -473,11 +489,21 @@
                     </div>
 
                     <a href="#" class="btn-reserve">
-                        <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
+                        <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                     </a>
                 </div>
             </div>
+            @endif
+            @foreach($rooms as $room)
+                <div class="room-card">
+                    <div class="room-image-slider" data-images="{{ implode(',', array_map('asset', $room['images'])) }}">
+                        <img src="{{ asset($room['images'][0] ?? 'images/bed-image.jpg') }}" alt="{{ $room['title'] }}">
+                        @if(count($room['images']) > 1)<div class="slider-dots">@foreach($room['images'] as $index => $image)<div class="dot {{ $index === 0 ? 'active' : '' }}" onclick="changeSlide(this, {{ $index }})"></div>@endforeach</div>@endif
+                    </div>
+                    <div class="room-info"><h3>{{ $room['title'] }}</h3><p>{{ $room['description'] }}</p><div class="room-price">PKR {{ $room['price'] }} / Night</div><div class="room-stats">@if(!empty($room['rating']))<div class="stat-badge"><i class="ri-star-fill"></i> {{ $room['rating'] }}</div>@endif<div class="stat-badge"><i class="ri-hotel-bed-line"></i> {{ $room['bedrooms'] }} Bedrooms</div>@if(!empty($room['persons']))<div class="stat-badge"><i class="ri-group-line"></i> {{ $room['persons'] }} Persons</div>@endif @if(($room['kitchen'] ?? 'no') === 'yes')<div class="stat-badge"><i class="ri-restaurant-line"></i> Kitchen Available</div>@else <div class="stat-badge" style="color:#e53e3e"><i class="ri-close-line"></i> No Kitchen</div>@endif</div><div class="room-amenities">@foreach($room['features'] as $feature)@if(!in_array(strtolower(trim($feature)), ['kitchen','kitchen available','no kitchen']))<div class="amenity-item"><i class="ri-check-line"></i> {{ $feature }}</div>@endif @endforeach</div><a href="#" class="btn-reserve"><div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>Reserve This Room</a></div>
+                </div>
+            @endforeach
         </div>
     </section>
 
@@ -497,7 +523,7 @@
                 </div>
                 <div class="policy-card">
                     <div class="policy-icon">
-                        <i class="ri-logout-box-line"></i>
+                        <i class="ri-logout-box-r-line"></i>
                     </div>
                     <h4>Check-out</h4>
                     <p>Until 12:00 PM noon</p>
