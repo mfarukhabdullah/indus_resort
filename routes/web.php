@@ -70,13 +70,25 @@ Route::post('/admin/login', function (\Illuminate\Http\Request $request) {
     }
     $request->session()->regenerate();
     $request->session()->put('admin_authenticated', true);
-    return redirect()->route('admin.login');
+
+    if ($request->boolean('remember')) {
+        $token = $auth->issueRememberToken();
+
+        return redirect()->route('admin.login')->withCookie(
+            cookie('admin_remember', $token, 60 * 24 * 30, null, null, false, true, false, 'lax')
+        );
+    }
+
+    $auth->clearRememberToken();
+
+    return redirect()->route('admin.login')->withCookie(cookie()->forget('admin_remember'));
 })->name('admin.login.submit');
 Route::post('/admin/logout', function (\Illuminate\Http\Request $request) {
+    (new AdminPasswordController())->clearRememberToken();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
 
-    return redirect()->route('admin.login');
+    return redirect()->route('admin.login')->withCookie(cookie()->forget('admin_remember'));
 })->name('admin.logout');
 
 Route::get('/admin/change-password', [AdminPasswordController::class, 'edit'])->name('admin.change-password');
