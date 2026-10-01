@@ -68,7 +68,7 @@ class RoomController extends Controller
                 return back()->withErrors(['images' => 'A room can have a maximum of 8 images. Remove an existing image first.'])->withInput();
             }
             foreach ($request->file('images') as $image) {
-                $filename = 'room-' . uniqid() . '.' . $image->extension();
+                $filename = basename($image->getClientOriginalName());
                 $image->move($directory, $filename);
                 $images[] = 'images/rooms/' . $filename;
             }
@@ -103,7 +103,7 @@ class RoomController extends Controller
         if (!isset($rooms[$room]['images'][$image])) return back()->withErrors(['image' => 'Image not found.']);
         $request->validate(['image' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:20480']]);
         $directory = public_path('images/rooms'); File::ensureDirectoryExists($directory);
-        $filename = 'room-' . uniqid() . '.' . $request->file('image')->extension();
+        $filename = basename($request->file('image')->getClientOriginalName());
         $request->file('image')->move($directory, $filename);
         $rooms[$room]['images'][$image] = 'images/rooms/' . $filename;
         File::put(storage_path('app/rooms.json'), json_encode($rooms, JSON_PRETTY_PRINT));

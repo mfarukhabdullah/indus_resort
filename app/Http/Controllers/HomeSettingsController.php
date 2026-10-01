@@ -56,7 +56,7 @@ class HomeSettingsController extends Controller
         if ($request->hasFile('hero_image')) {
             $directory = public_path('images/uploads');
             File::ensureDirectoryExists($directory);
-            $filename = 'hero-' . now()->format('YmdHis') . '.' . $request->file('hero_image')->extension();
+            $filename = basename($request->file('hero_image')->getClientOriginalName());
             $request->file('hero_image')->move($directory, $filename);
             $settings['hero_image'] = 'images/uploads/' . $filename;
         }
