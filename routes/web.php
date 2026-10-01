@@ -32,7 +32,9 @@ Route::get('/header', function () {
 Route::get('/contact', [ContactSettingsController::class, 'contact'])->name('contact');
 
 Route::get('/admin/login', function () {
-    return view('admin.dashboard');
+    $rooms = (new RoomController)->rooms();
+    $contact = (new ContactSettingsController)->settings();
+    return view('admin.dashboard', ['roomCount' => count($rooms), 'imageCount' => collect($rooms)->sum(function ($room) { return count($room['images'] ?? []); }), 'contactSettings' => $contact]);
 })->name('admin.login');
 
 Route::get('/admin/home-settings', [HomeSettingsController::class, 'edit'])->name('admin.home-settings');
