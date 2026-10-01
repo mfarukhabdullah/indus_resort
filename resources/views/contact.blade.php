@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Indus Resort Murree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <title>{{ $seo['contact']['title'] }}</title><meta name="description" content="{{ $seo['contact']['description'] }}"><meta name="keywords" content="{{ $seo['contact']['keywords'] }}"><meta name="robots" content="{{ $seo['contact']['robots'] }}"><link rel="canonical" href="{{ url()->current() }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
