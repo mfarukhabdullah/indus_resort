@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Support\SiteDataStore;
 
 class HomeSettingsController extends Controller
 {
@@ -19,8 +20,7 @@ class HomeSettingsController extends Controller
 
     public function settings(): array
     {
-        $path = storage_path('app/home-settings.json');
-        $saved = File::exists($path) ? json_decode(File::get($path), true) : [];
+        $saved = SiteDataStore::get('home-settings', []);
 
         return array_merge($this->defaults(), is_array($saved) ? $saved : []);
     }
@@ -56,12 +56,12 @@ class HomeSettingsController extends Controller
         if ($request->hasFile('hero_image')) {
             $directory = public_path('images/uploads');
             File::ensureDirectoryExists($directory);
-            $filename = 'hero-' . now()->format('YmdHis') . '.' . $request->file('hero_image')->extension();
+            $filename = basename($request->file('hero_image')->getClientOriginalName());
             $request->file('hero_image')->move($directory, $filename);
             $settings['hero_image'] = 'images/uploads/' . $filename;
         }
 
-        File::put(storage_path('app/home-settings.json'), json_encode($settings, JSON_PRETTY_PRINT));
+        SiteDataStore::put('home-settings', $settings);
 
         return redirect()->route('admin.home-settings')->with('success', 'Home hero section updated successfully.');
     }

@@ -776,8 +776,8 @@ body {
 .footer-social-links {
     display: flex;
     gap: 14px;
-
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .social-icon-btn {
@@ -800,6 +800,13 @@ body {
     border-color: var(--gold-bright);
     color: var(--gold-bright);
     transform: translateY(-3px);
+}
+
+.social-icon-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    display: block;
 }
 
 /* 2. Quick Links Column (Exact Size: 127px x 221.95px) */

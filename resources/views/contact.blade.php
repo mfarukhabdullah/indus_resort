@@ -439,7 +439,7 @@
     @include('components.hero', [
         'title' => 'Contact Us',
         'subtitle' => 'Have a question or ready to book? <br> Reach out and our team will get back to you shortly.',
-        'image' => 'images/contact-us-banner.webp'
+        'image' => 'images/Contact-Us-banner.webp'
     ])
 
     <!-- Main Contact Grid -->

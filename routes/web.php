@@ -8,6 +8,7 @@ use App\Http\Controllers\FooterSettingsController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\AdminPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,19 +42,57 @@ Route::post('/contact', [MessageController::class, 'store'])->name('contact.mess
 
 Route::get('/admin/login', function () {
     if (session('admin_authenticated')) {
-    $rooms = (new RoomController)->rooms();
-    $contact = (new ContactSettingsController)->settings();
-    return view('admin.dashboard', ['roomCount' => count($rooms), 'imageCount' => collect($rooms)->sum(function ($room) { return count($room['images'] ?? []); }), 'contactSettings' => $contact]);
+        $rooms = (new RoomController)->rooms();
+        $galleryImages = (new GalleryController)->images();
+        $messages = (new MessageController)->messages();
+        $contact = (new ContactSettingsController)->settings();
+
+        return view('admin.dashboard', [
+            'roomCount' => count($rooms),
+            'imageCount' => count($galleryImages),
+            'messageCount' => count($messages),
+            'contactSettings' => $contact,
+        ]);
     }
     return view('admin.login');
 })->name('admin.login');
 Route::post('/admin/login', function (\Illuminate\Http\Request $request) {
     $data = $request->validate(['email' => ['required','email'], 'password' => ['required','string']]);
-    if ($data['email'] !== 'admin@indusresort.com' || $data['password'] !== 'admin123') return back()->withErrors(['email' => 'Invalid admin email or password.'])->withInput();
+    $auth = new AdminPasswordController();
+    $creds = $auth->getCredentials();
+    
+    $emailMatches = strtolower(trim($data['email'])) === strtolower(trim($creds['email']));
+    $stored = $creds['password'] ?? '';
+    $passwordMatches = \Illuminate\Support\Facades\Hash::check($data['password'], $stored) || ($data['password'] === $stored);
+    
+    if (!$emailMatches || !$passwordMatches) {
+        return back()->withErrors(['email' => 'Invalid admin email or password.'])->withInput();
+    }
+    $request->session()->regenerate();
     $request->session()->put('admin_authenticated', true);
-    return redirect()->route('admin.login');
+
+    if ($request->boolean('remember')) {
+        $token = $auth->issueRememberToken();
+
+        return redirect()->route('admin.login')->withCookie(
+            cookie('admin_remember', $token, 60 * 24 * 30, null, null, false, true, false, 'lax')
+        );
+    }
+
+    $auth->clearRememberToken();
+
+    return redirect()->route('admin.login')->withCookie(cookie()->forget('admin_remember'));
 })->name('admin.login.submit');
-Route::post('/admin/logout', function (\Illuminate\Http\Request $request) { $request->session()->forget('admin_authenticated'); return redirect()->route('admin.login'); })->name('admin.logout');
+Route::post('/admin/logout', function (\Illuminate\Http\Request $request) {
+    (new AdminPasswordController())->clearRememberToken();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('admin.login')->withCookie(cookie()->forget('admin_remember'));
+})->name('admin.logout');
+
+Route::get('/admin/change-password', [AdminPasswordController::class, 'edit'])->name('admin.change-password');
+Route::post('/admin/change-password', [AdminPasswordController::class, 'update'])->name('admin.change-password.update');
 
 Route::get('/admin/home-settings', [HomeSettingsController::class, 'edit'])->name('admin.home-settings');
 Route::get('/admin/seo-settings', [SeoController::class, 'edit'])->name('admin.seo-settings');

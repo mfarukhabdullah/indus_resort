@@ -272,35 +272,75 @@
     }
 
     .btn-reserve {
-        display: inline-flex;
-        align-items: center;
-        background-color: #fff;
-        color: #133827;
-        padding: 6px 20px 6px 6px;
+        width: 250px;
+        height: 52px;
+        background-color: #ffffff;
         border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 4px;
         text-decoration: none;
-        font-family: 'Libre Baskerville', serif;
-        font-size: 15px;
-        font-weight: 700;
-        gap: 12px;
-        transition: all 0.3s ease;
-        align-self: flex-start;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        flex-shrink: 0;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        margin-top: 10px;
+    }
+    .btn-reserve::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        height: calc(100% - 8px);
+        width: 0%;
+        background-color: #133827;
+        border-radius: 6px;
+        transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 1;
+    }
+    .btn-reserve:hover::before {
+        width: calc(100% - 8px);
+    }
+    .btn-reserve:hover {
+        background-color: #ffffff !important;
     }
     .btn-reserve-icon {
         width: 36px;
-        height: 36px;
+        height: 44px;
         background-color: #133827;
-        color: #ffffff;
+        color: #fff;
         border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        flex-shrink: 0;
+        z-index: 2;
         font-size: 18px;
+        transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s;
     }
-    .btn-reserve:hover {
-        background-color: #f9f9f9;
-        transform: translateY(-2px);
+    .btn-reserve:hover .btn-reserve-icon {
+        left: calc(100% - 40px);
+        background-color: #133827 !important;
+    }
+    .btn-reserve-text {
+        font-family: 'Libre Baskerville', serif;
+        font-weight: 700;
+        font-size: 14px;
+        color: #133827;
+        white-space: nowrap;
+        position: relative;
+        z-index: 2;
+        margin-left: 52px;
+        transition: color 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .btn-reserve:hover .btn-reserve-text {
+        color: #ffffff !important;
+        transform: translateX(-40px);
     }
 
     /* Policies Section */
@@ -440,20 +480,6 @@
         }
         .btn-reserve {
             width: 100%;
-            justify-content: center;
-            background-color: #133827;
-            color: #fff;
-            padding: 12px;
-        }
-        .btn-reserve-icon {
-            background-color: transparent;
-            color: #fff;
-            width: auto;
-            height: auto;
-        }
-        .btn-reserve:hover {
-            background-color: #0e2a1d;
-            color: #fff;
         }
     }
 </style>
@@ -467,7 +493,7 @@
     @include('components.hero', [
         'title' => 'Rooms & Suites',
         'subtitle' => 'Elegant, comfortable spaces designed to make every moment of your stay <br> memorable.',
-        'image' => 'images/hero-image.png'
+        'image' => 'images/room-banner.webp'
     ])
 
     <section class="rooms-intro">
@@ -509,7 +535,7 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
+                    <a href="https://wa.me/923352015555?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
                     </a>
@@ -545,7 +571,7 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
+                    <a href="https://wa.me/923352015555?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
                     </a>
@@ -580,7 +606,7 @@
                         <div class="amenity-item"><i class="ri-check-line"></i> Balcony with Mountain View</div>
                     </div>
 
-                    <a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
+                    <a href="https://wa.me/923352015555?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve">
                         <div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Reserve This Room
                     </a>
@@ -593,7 +619,7 @@
                         <img src="{{ asset($room['images'][0] ?? 'images/bed-image.jpg') }}" alt="{{ $room['title'] }}">
                         @if(count($room['images']) > 1)<div class="slider-dots">@foreach($room['images'] as $index => $image)<div class="dot {{ $index === 0 ? 'active' : '' }}" onclick="changeSlide(this, {{ $index }})"></div>@endforeach</div>@endif
                     </div>
-                    <div class="room-info"><h3>{{ $room['title'] }}</h3><p>{{ $room['description'] }}</p><div class="room-price">PKR {{ $room['price'] }} / Night</div><div class="room-stats">@if(!empty($room['rating']))<div class="stat-badge"><i class="ri-star-fill"></i> {{ $room['rating'] }}</div>@endif<div class="stat-badge"><i class="ri-hotel-bed-line"></i> {{ $room['bedrooms'] }} Bedrooms</div>@if(!empty($room['persons']))<div class="stat-badge"><i class="ri-group-line"></i> {{ $room['persons'] }} Persons</div>@endif @if(($room['kitchen'] ?? 'no') === 'yes')<div class="stat-badge"><i class="ri-restaurant-line"></i> Kitchen Available</div>@else <div class="stat-badge" style="color:#e53e3e"><i class="ri-close-line"></i> No Kitchen</div>@endif</div><div class="room-amenities">@foreach($room['features'] as $feature)@if(!in_array(strtolower(trim($feature)), ['kitchen','kitchen available','no kitchen']))<div class="amenity-item"><i class="ri-check-line"></i> {{ $feature }}</div>@endif @endforeach</div><a href="https://wa.me/923000053333?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve"><div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div>Reserve This Room</a></div>
+                    <div class="room-info"><h3>{{ $room['title'] }}</h3><p>{{ $room['description'] }}</p><div class="room-price">PKR {{ $room['price'] }} / Night</div><div class="room-stats">@if(!empty($room['rating']))<div class="stat-badge"><i class="ri-star-fill"></i> {{ $room['rating'] }}</div>@endif<div class="stat-badge"><i class="ri-hotel-bed-line"></i> {{ $room['bedrooms'] }} Bedrooms</div>@if(!empty($room['persons']))<div class="stat-badge"><i class="ri-group-line"></i> {{ $room['persons'] }} Persons</div>@endif @if(($room['kitchen'] ?? 'no') === 'yes')<div class="stat-badge"><i class="ri-restaurant-line"></i> Kitchen Available</div>@else <div class="stat-badge" style="color:#e53e3e"><i class="ri-close-line"></i> No Kitchen</div>@endif</div><div class="room-amenities">@foreach($room['features'] as $feature)@if(!in_array(strtolower(trim($feature)), ['kitchen','kitchen available','no kitchen']))<div class="amenity-item"><i class="ri-check-line"></i> {{ $feature }}</div>@endif @endforeach</div><a href="https://wa.me/923352015555?text=Hi%2C%20I%20want%20to%20reserve%20a%20room%20at%20Indus%20Resort%20Murree" target="_blank" class="btn-reserve"><div class="btn-reserve-icon"><i class="ri-arrow-right-s-line"></i></div><span class="btn-reserve-text">Reserve This Room</span></a></div>
                 </div>
             @endforeach
         </div>

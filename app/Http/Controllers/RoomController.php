@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Support\SiteDataStore;
 
 class RoomController extends Controller
 {
@@ -18,8 +19,7 @@ class RoomController extends Controller
 
     public function rooms(): array
     {
-        $path = storage_path('app/rooms.json');
-        $saved = File::exists($path) ? json_decode(File::get($path), true) : null;
+        $saved = SiteDataStore::get('rooms', null);
         return is_array($saved) ? $saved : $this->defaults();
     }
 
@@ -68,7 +68,7 @@ class RoomController extends Controller
                 return back()->withErrors(['images' => 'A room can have a maximum of 8 images. Remove an existing image first.'])->withInput();
             }
             foreach ($request->file('images') as $image) {
-                $filename = 'room-' . uniqid() . '.' . $image->extension();
+                $filename = basename($image->getClientOriginalName());
                 $image->move($directory, $filename);
                 $images[] = 'images/rooms/' . $filename;
             }
@@ -79,7 +79,7 @@ class RoomController extends Controller
         }));
         $room = ['title' => $data['title'], 'description' => $data['description'], 'price' => $data['price'], 'rating' => $data['rating'] ?? '', 'bedrooms' => $data['bedrooms'], 'persons' => $data['persons'], 'kitchen' => $data['kitchen'], 'features' => $features, 'images' => $images];
         if ($editing) { $rooms[$data['room_index']] = $room; $savedIndex = (int) $data['room_index']; } else { $rooms[] = $room; $savedIndex = count($rooms) - 1; }
-        File::put(storage_path('app/rooms.json'), json_encode($rooms, JSON_PRETTY_PRINT));
+        SiteDataStore::put('rooms', $rooms);
 
         return redirect()->route('admin.rooms', ['edit' => $savedIndex])->with('success', $editing ? 'Room updated successfully. New images are shown below.' : 'Room added successfully and is now live on the Rooms page.');
     }
@@ -92,7 +92,7 @@ class RoomController extends Controller
         }
 
         array_splice($rooms, (int) $room, 1);
-        File::put(storage_path('app/rooms.json'), json_encode($rooms, JSON_PRETTY_PRINT));
+        SiteDataStore::put('rooms', $rooms);
 
         return redirect()->route('admin.rooms')->with('success', 'Room deleted successfully.');
     }
@@ -103,10 +103,10 @@ class RoomController extends Controller
         if (!isset($rooms[$room]['images'][$image])) return back()->withErrors(['image' => 'Image not found.']);
         $request->validate(['image' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:20480']]);
         $directory = public_path('images/rooms'); File::ensureDirectoryExists($directory);
-        $filename = 'room-' . uniqid() . '.' . $request->file('image')->extension();
+        $filename = basename($request->file('image')->getClientOriginalName());
         $request->file('image')->move($directory, $filename);
         $rooms[$room]['images'][$image] = 'images/rooms/' . $filename;
-        File::put(storage_path('app/rooms.json'), json_encode($rooms, JSON_PRETTY_PRINT));
+        SiteDataStore::put('rooms', $rooms);
         if ($request->expectsJson()) return response()->json(['success' => true, 'image' => asset($rooms[$room]['images'][$image]), 'filename' => basename($rooms[$room]['images'][$image])]);
         return back()->with('success', 'Image replaced successfully.');
     }
@@ -125,7 +125,7 @@ class RoomController extends Controller
             return back()->withErrors(['image' => 'Image not found.']);
         }
         array_splice($rooms[$room]['images'], (int) $image, 1);
-        File::put(storage_path('app/rooms.json'), json_encode($rooms, JSON_PRETTY_PRINT));
+        SiteDataStore::put('rooms', $rooms);
         if (request()->expectsJson()) return response()->json(['success' => true, 'fallback' => false]);
         return back()->with('success', 'Image deleted successfully.');
     }
