@@ -496,7 +496,7 @@
                     <h2>A Home Away From Home in the Hills</h2>
                     <p>Indus Resort was founded with a simple vision — to give travelers a peaceful, comfortable place to reconnect with nature without compromising on comfort. Located along the scenic hills of Murree, our resort combines traditional hospitality with modern amenities to create an experience guests remember long after they leave.</p>
                     <p>Today, we welcome families, couples and groups from across Pakistan and abroad, offering cozy rooms, delicious food, and unforgettable evenings around the bonfire — all set against the breathtaking backdrop of the Himalayan foothills.</p>
-                    <a href="#" class="btn-explore">
+                    <a href="{{ route('rooms') }}" class="btn-explore">
                         <div class="btn-explore-icon"><i class="ri-arrow-right-s-line"></i></div>
                         Explore Our Rooms
                     </a>
