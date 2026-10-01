@@ -74,14 +74,26 @@
 </footer>
 
 <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/923000053333" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
-    <i class="ri-whatsapp-line"></i>
-</a>
+<div class="whatsapp-container">
+    <a href="https://wa.me/923000053333" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="ri-whatsapp-line"></i>
+    </a>
+</div>
 
 <style>
-    .floating-whatsapp {
+    .whatsapp-container {
         position: fixed;
         bottom: 25px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 1200px;
+        pointer-events: none;
+        z-index: 1000;
+    }
+    .floating-whatsapp {
+        position: absolute;
+        bottom: 0;
         right: 25px;
         background-color: #25d366;
         color: white;
@@ -93,17 +105,19 @@
         justify-content: center;
         font-size: 35px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 1000;
         transition: transform 0.3s ease;
         text-decoration: none;
+        pointer-events: auto;
     }
     .floating-whatsapp:hover {
         transform: scale(1.1);
         color: white;
     }
     @media (max-width: 768px) {
-        .floating-whatsapp {
+        .whatsapp-container {
             bottom: 20px;
+        }
+        .floating-whatsapp {
             right: 20px;
             width: 50px;
             height: 50px;
