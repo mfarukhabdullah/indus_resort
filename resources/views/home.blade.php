@@ -966,7 +966,7 @@
         <div class="inner-container">
             <h2 class="about-heading-scroll">Your Peaceful Escape in the Hills of Murree</h2>
             <div class="about-grid">
-                <img src="{{ asset('images/pool-image.jpg') }}" alt="Pool View" class="about-img-left">
+                <img src="{{ asset('images/your-peaceful.webp') }}" alt="Your Peaceful Escape at Indus Resort" class="about-img-left">
                 
                 <div class="about-text">
                     <p>Perched amid pine forests and rolling green hills, Indus Resort blends modern comfort with the natural charm of Murree. From cozy rooms with valley views to fine dining under the stars, every detail is designed for a relaxing, memorable getaway with family and friends.</p>
