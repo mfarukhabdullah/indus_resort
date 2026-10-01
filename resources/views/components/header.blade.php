@@ -16,8 +16,8 @@
                 <ul class="header-nav-list">
                     <li><a href="{{ url('/') }}" class="header-nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
                     <li><a href="{{ url('/about') }}" class="header-nav-link {{ request()->is('about*') ? 'active' : '' }}">About</a></li>
-                    <li><a href="{{ url('/#rooms') }}" class="header-nav-link">Rooms & Suites</a></li>
-                    <li><a href="{{ url('/#gallery') }}" class="header-nav-link">Gallery</a></li>
+                    <li><a href="{{ route('rooms') }}" class="header-nav-link {{ request()->is('rooms*') ? 'active' : '' }}">Rooms & Suites</a></li>
+                    <li><a href="{{ route('gallery') }}" class="header-nav-link {{ request()->is('gallery*') ? 'active' : '' }}">Gallery</a></li>
                     <li><a href="{{ url('/contact') }}" class="header-nav-link {{ request()->is('contact*') ? 'active' : '' }}">Contact Us</a></li>
                 </ul>
             </nav>
@@ -70,10 +70,10 @@
                     <a href="{{ url('/about') }}" class="mobile-menu-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
                 </li>
                 <li>
-                    <a href="{{ url('/#rooms') }}" class="mobile-menu-link {{ request()->is('rooms*') ? 'active' : '' }}">Rooms & Suites</a>
+                    <a href="{{ route('rooms') }}" class="mobile-menu-link {{ request()->is('rooms*') ? 'active' : '' }}">Rooms & Suites</a>
                 </li>
                 <li>
-                    <a href="{{ url('/#gallery') }}" class="mobile-menu-link {{ request()->is('gallery*') ? 'active' : '' }}">Gallery</a>
+                    <a href="{{ route('gallery') }}" class="mobile-menu-link {{ request()->is('gallery*') ? 'active' : '' }}">Gallery</a>
                 </li>
                 <li>
                     <a href="{{ url('/contact') }}" class="mobile-menu-link {{ request()->is('contact*') ? 'active' : '' }}">Contact Us</a>

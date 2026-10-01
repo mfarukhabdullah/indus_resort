@@ -26,6 +26,11 @@ Route::get('/about', function () {
 
 Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
 
+Route::get('/gallery', function () {
+    return view('gallery');
+})->name('gallery');
+
+
 Route::get('/header', function () {
     return view('header-preview');
 });
