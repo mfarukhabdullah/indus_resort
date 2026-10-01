@@ -42,9 +42,17 @@ Route::post('/contact', [MessageController::class, 'store'])->name('contact.mess
 
 Route::get('/admin/login', function () {
     if (session('admin_authenticated')) {
-    $rooms = (new RoomController)->rooms();
-    $contact = (new ContactSettingsController)->settings();
-    return view('admin.dashboard', ['roomCount' => count($rooms), 'imageCount' => collect($rooms)->sum(function ($room) { return count($room['images'] ?? []); }), 'contactSettings' => $contact]);
+        $rooms = (new RoomController)->rooms();
+        $galleryImages = (new GalleryController)->images();
+        $messages = (new MessageController)->messages();
+        $contact = (new ContactSettingsController)->settings();
+
+        return view('admin.dashboard', [
+            'roomCount' => count($rooms),
+            'imageCount' => count($galleryImages),
+            'messageCount' => count($messages),
+            'contactSettings' => $contact,
+        ]);
     }
     return view('admin.login');
 })->name('admin.login');
@@ -60,10 +68,16 @@ Route::post('/admin/login', function (\Illuminate\Http\Request $request) {
     if (!$emailMatches || !$passwordMatches) {
         return back()->withErrors(['email' => 'Invalid admin email or password.'])->withInput();
     }
+    $request->session()->regenerate();
     $request->session()->put('admin_authenticated', true);
     return redirect()->route('admin.login');
 })->name('admin.login.submit');
-Route::post('/admin/logout', function (\Illuminate\Http\Request $request) { $request->session()->forget('admin_authenticated'); return redirect()->route('admin.login'); })->name('admin.logout');
+Route::post('/admin/logout', function (\Illuminate\Http\Request $request) {
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('admin.login');
+})->name('admin.logout');
 
 Route::get('/admin/change-password', [AdminPasswordController::class, 'edit'])->name('admin.change-password');
 Route::post('/admin/change-password', [AdminPasswordController::class, 'update'])->name('admin.change-password.update');

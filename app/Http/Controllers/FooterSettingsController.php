@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Support\SiteDataStore;
 
 class FooterSettingsController extends Controller
 {
@@ -189,8 +190,7 @@ class FooterSettingsController extends Controller
 
     public function settings(): array
     {
-        $path = storage_path('app/footer-settings.json');
-        $saved = File::exists($path) ? json_decode(File::get($path), true) : [];
+        $saved = SiteDataStore::get('footer-settings', []);
         $data = array_merge($this->defaults(), is_array($saved) ? $saved : []);
         $data['social_list'] = self::getSocialList($data);
         return $data;
@@ -275,7 +275,7 @@ class FooterSettingsController extends Controller
             'custom_socials' => $customSocials,
         ];
 
-        File::put(storage_path('app/footer-settings.json'), json_encode($settings, JSON_PRETTY_PRINT));
+        SiteDataStore::put('footer-settings', $settings);
 
         return redirect()->route('admin.footer-settings')->with('success', 'Footer settings updated across the website.');
     }

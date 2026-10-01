@@ -28,7 +28,7 @@
             <article><div class="stat-icon green"><i class="ri-hotel-bed-line"></i></div><div><small>Total Rooms &amp; Suites</small><b>{{ $roomCount ?? 0 }}</b><a href="{{ route('admin.rooms') }}">Manage Rooms <i class="ri-arrow-right-line"></i></a></div></article>
             <article><div class="stat-icon gold"><i class="ri-image-line"></i></div><div><small>Gallery Images</small><b>{{ $imageCount ?? 0 }}</b><a href="{{ route('admin.gallery') }}">Manage Gallery <i class="ri-arrow-right-line"></i></a></div></article>
             <article><div class="stat-icon blue"><i class="ri-file-text-line"></i></div><div><small>Total Pages</small><b>12</b><a href="{{ route('admin.home-settings') }}">Manage Home <i class="ri-arrow-right-line"></i></a></div></article>
-            <article><div class="stat-icon rose"><i class="ri-mail-line"></i></div><div><small>Contact Submissions</small><b>8</b><a href="{{ route('admin.messages') }}">View Messages <i class="ri-arrow-right-line"></i></a></div></article>
+            <article><div class="stat-icon rose"><i class="ri-mail-line"></i></div><div><small>Contact Submissions</small><b>{{ $messageCount ?? 0 }}</b><a href="{{ route('admin.messages') }}">View Messages <i class="ri-arrow-right-line"></i></a></div></article>
         </section>
 
         <section class="dashboard-grid">
