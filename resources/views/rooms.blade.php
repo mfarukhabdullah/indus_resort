@@ -26,6 +26,47 @@
         background-color: #fff;
         overflow: hidden;
     }
+
+    /* Scroll Triggered Animations for Rooms Intro and Stay Policies */
+    .rooms-intro h2,
+    .rooms-intro p,
+    .stay-policies h2,
+    .stay-policies .inner-container > p,
+    .policy-card {
+        opacity: 0;
+        transform: translateY(65px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .rooms-intro h2.is-visible,
+    .rooms-intro p.is-visible,
+    .stay-policies h2.is-visible,
+    .stay-policies .inner-container > p.is-visible,
+    .policy-card.is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition-delay: 0s !important;
+    }
+
+    /* Stagger Delays */
+    .rooms-intro p {
+        transition-delay: 0.15s;
+    }
+    .stay-policies .inner-container > p {
+        transition-delay: 0.15s;
+    }
+    .policies-grid .policy-card:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    .policies-grid .policy-card:nth-child(2) {
+        transition-delay: 0.25s;
+    }
+    .policies-grid .policy-card:nth-child(3) {
+        transition-delay: 0.4s;
+    }
     
     /* Typography */
     h1, h2, h3, h4 {
@@ -653,6 +694,36 @@
             }
         });
     });
+
+    (function () {
+        function initScrollAnimations() {
+            const elements = document.querySelectorAll('.rooms-intro h2, .rooms-intro p, .stay-policies h2, .stay-policies .inner-container > p, .policy-card');
+            if (!elements.length) return;
+
+            function checkScroll() {
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= windowHeight * 0.98 && rect.bottom >= 0) {
+                        el.classList.add('is-visible');
+                    } else if (rect.top > windowHeight + 100) {
+                        el.classList.remove('is-visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkScroll, { passive: true });
+            window.addEventListener('resize', checkScroll, { passive: true });
+            checkScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initScrollAnimations);
+        } else {
+            initScrollAnimations();
+        }
+    })();
 </script>
 
 </body>
