@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeSettingsController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ContactSettingsController;
+use App\Http\Controllers\FooterSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +23,13 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/rooms', function () {
-    return view('rooms');
-})->name('rooms');
+Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
 
 Route::get('/header', function () {
     return view('header-preview');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', [ContactSettingsController::class, 'contact'])->name('contact');
 
 Route::get('/admin/login', function () {
     return view('admin.dashboard');
@@ -38,3 +37,12 @@ Route::get('/admin/login', function () {
 
 Route::get('/admin/home-settings', [HomeSettingsController::class, 'edit'])->name('admin.home-settings');
 Route::post('/admin/home-settings', [HomeSettingsController::class, 'update'])->name('admin.home-settings.update');
+Route::get('/admin/contact-settings', [ContactSettingsController::class, 'edit'])->name('admin.contact-settings');
+Route::post('/admin/contact-settings', [ContactSettingsController::class, 'update'])->name('admin.contact-settings.update');
+Route::get('/admin/footer-settings', [FooterSettingsController::class, 'edit'])->name('admin.footer-settings');
+Route::post('/admin/footer-settings', [FooterSettingsController::class, 'update'])->name('admin.footer-settings.update');
+Route::get('/admin/rooms', [RoomController::class, 'admin'])->name('admin.rooms');
+Route::post('/admin/rooms', [RoomController::class, 'store'])->name('admin.rooms.store');
+Route::delete('/admin/rooms/{room}', [RoomController::class, 'destroy'])->name('admin.rooms.destroy');
+Route::post('/admin/rooms/{room}/images/{image}/replace', [RoomController::class, 'replaceImage'])->name('admin.rooms.image.replace');
+Route::delete('/admin/rooms/{room}/images/{image}', [RoomController::class, 'deleteImage'])->name('admin.rooms.image.delete');

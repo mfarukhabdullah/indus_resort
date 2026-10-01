@@ -458,28 +458,28 @@
                                 <i class="ri-mail-fill"></i>
                             </div>
                             <h4>Email Address</h4>
-                            <p>indusresort7861@gmail.com</p>
+                            <p>{{ $contactSettings['email'] }}</p>
                         </div>
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="ri-phone-fill"></i>
                             </div>
                             <h4>Phone Number</h4>
-                            <p>0300-0053333</p>
+                            <p>{{ $contactSettings['phone'] }}</p>
                         </div>
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="ri-map-pin-2-fill"></i>
                             </div>
                             <h4>Our Location</h4>
-                            <p>Governor House Road, Aliot<br>Bazar, Kohala Road, Murree</p>
+                            <p>{!! nl2br(e($contactSettings['location'])) !!}</p>
                         </div>
                         <div class="info-card">
                             <div class="info-icon">
                                 <i class="ri-time-fill"></i>
                             </div>
                             <h4>Reception Hours</h4>
-                            <p>Open 24 hours<br>Every day of the week</p>
+                            <p>{!! nl2br(e($contactSettings['hours'])) !!}</p>
                         </div>
                     </div>
                 </div>
